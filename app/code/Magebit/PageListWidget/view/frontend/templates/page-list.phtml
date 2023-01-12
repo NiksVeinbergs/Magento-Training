@@ -3,3 +3,16 @@
  * @author       Niks Veinbergs
  * @copyright    Copyright (c) 2023
  */
+/** @var \Magebit\PageListWidget\Block\Widget\PageList $block */
+
+//getTitle un getPages metodes PageLista
+$title = $block->escapeHtml($block->getData('title'));
+//$pageList = ($block->getData('display_mode') == 2) ? explode(',', $block->getData('pages')) : $block->pageOptionArray();
+?>
+
+<h1><?= $title ?></h1>
+<ul>
+    <?php foreach ($pageList as $page) : ?>
+    <li><?php print_r($page) ?></li>
+    <?php endforeach; ?>
+</ul>
