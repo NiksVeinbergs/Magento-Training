@@ -31,9 +31,9 @@ module.exports = {
         ],
         dsl: 'less'
     },
-    luma: {
+    magebitlearning: {
         area: 'frontend',
-        name: 'Magento/luma',
+        name: 'Magebit/learning',
         locale: 'en_US',
         files: [
             'css/styles-m',

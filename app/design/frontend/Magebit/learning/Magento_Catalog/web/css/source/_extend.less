@@ -1,0 +1,155 @@
+
+//Colors
+@white : #FFFFFF;
+@black: #333333;
+@orange: #FF5501;
+@darkGray: #575757;
+@mediumGray: #C2C2C2;
+@lightGray: #F9F9F9;
+
+@product-info-price: @darkGray;
+
+.action.primary.tocart {
+    background-color: @orange;
+    width:100%;
+    border: 0px;
+}
+.box-tocart .action.tocart:not(:last-child){
+    margin-bottom: 40px;
+}
+.page-title {
+    text-align: left;
+    font: normal normal 600 32px/43px Open Sans;
+    letter-spacing: 0px;
+    color: @black;
+    opacity: 1;
+}
+
+.product-info-main .rating-summary, .customer-review .rating-summary{
+    margin-right:6.5px;
+}
+
+.action.view {
+    text-align: left;
+    text-decoration: underline;
+    font: normal normal normal 12px/17px Open Sans;
+    letter-spacing: 0px;
+    color: @orange;
+}
+
+.action.add {
+    width:117px;
+    height:28px;
+    border-radius:2px;
+    border: 1px solid @black;
+    padding: 6px 10px 5px;
+    color: @black;
+    font: normal normal 600 12px/17px Open Sans;
+}
+
+.attribute-container {
+    background-color: @lightGray;
+    padding:20px;
+}
+
+.short-description {
+    text-align: left;
+    font: normal normal normal 12px/17px Open Sans;
+    letter-spacing: 0px;
+    color: @black;
+}
+
+.qty-row{
+    display:flex;
+    justify-content: space-between;
+    height:52px;
+    width:190px;
+    margin-bottom: 20px;
+}
+
+#qty{
+    height:100%;
+    width:86px;
+    border-right: 0px;
+    border-left: 0px;
+}
+
+.control{
+    height: 100%;
+}
+
+.qty-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:52px;
+    border: 1px solid @mediumGray;
+    font-size:17px;
+    font-weight: bold;
+}
+
+.qty-button.increment {
+    color: @orange;
+    background-color: white;
+    border-radius:0px;
+}
+
+.qty-button.decrement {
+    color: @black;
+    background-color: white;
+    border-radius:0px;
+}
+
+.qty-button.increment:hover, .qty-button.decrement:hover {
+    background-color: @lightGray;
+}
+
+.upsell-divider {
+    height:1px;
+    background-color: @mediumGray;
+    width:100%;
+}
+
+.view-upsell-product {
+    background: @black;
+    border-radius:2px;
+    width:109px;
+    height:32px;
+    color: white;
+    font: 700 11px Open Sans;
+}
+
+.upsell-row {
+    display: flex;
+    width:100%;
+    justify-content: space-between;
+    vertical-align: middle;
+}
+.upsell-image {
+    width:25%;
+}
+.name-rating-price {
+    padding-left: 15px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width:50%;
+}
+.view-product-div {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width:25%;
+}
+.upsell-name {
+    font: normal normal 600 16px/22px Open Sans;
+}
+.upsell-price {
+    font: normal normal 600 18px/24px Open Sans;
+}
+.products {
+    margin:10px;
+}
+.product-reviews-summary {
+    margin-bottom: 30px;
+}
