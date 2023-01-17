@@ -215,6 +215,7 @@
 .product-item-info {
     width:224px !important;
     height:444px;
+    position:relative;
 }
 
 .products {
@@ -237,13 +238,6 @@
 .product-item .price-box .price{
     font: normal normal bold 22px/30px Open Sans;
     letter-spacing: 0px;
-}
-
-.related-item-div{
-    height:100%;
-    display:flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
 
 .actions-primary{
@@ -280,10 +274,6 @@ form {
 }
 
 .text-rating-price{
-    height: 35%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     padding-left: 10px;
 }
 
@@ -296,6 +286,10 @@ form {
 }
 .related-add-to-cart-button{
     display: none;
+    position:absolute;
+    bottom: 10px;
+    margin-left:10px;
+    margin-right:10px;
 }
 .product-item-info:hover .related-add-to-cart-button{
     display: block;
@@ -313,3 +307,8 @@ form {
 .products-related {
     margin-top: 15px !important;
 }
+
+.related-text, .related-review, .related-price{
+    height:35px;
+}
+
