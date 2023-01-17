@@ -1,16 +1,15 @@
 <?xml version="1.0"?>
 <theme xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <body>
+        <move element="product.info.details" destination="product.info.addtocart" />
         <referenceBlock name="view.addto.compare" remove="true"/>
         <referenceBlock name="view.addto.wishlist" remove="true"/>
         <referenceBlock name="product.review.form" remove="true"/>
         <referenceBlock name="product.reviews.wrapper" remove="true"/>
         <referenceBlock name="product.info.overview" remove="true"/>
-        <move element="product.info.sku" destination="product.info.price" before="product.info.price" />
-        <move element="product.info.stock.sku" destination="product.info.addtocart" />
+        <referenceBlock name="product.info.stock.sku" remove="true"/>
         <move element="product.info.upsell" destination="product.info.addtocart" />
-        <referenceBlock name="product.attributes" remove="true"/>
-        <referenceBlock name="product.info.details" remove="true"/>
-
+        <move element="product.info.sku" destination="product.info.price" />
+        <block class="Magento\Catalog\Block\Product\View\Attributes" name="product.attributes" as="additional" template="Magento_Catalog::product/view/attributes.phtml" group="detailed_info" cacheable="false"></block>
     </body>
 </theme>

@@ -12,25 +12,39 @@
 <?php if ($_product->isSaleable()) :?>
     <div class="box-tocart">
         <div class="fieldset">
-            <?php if ($block->shouldRenderQuantity()) :?>
-                <div class="qty-row" data-bind="scope: 'qty-counter'">
-                    <button class="qty-button decrement" data-bind="click: decreaseQty">-</button>
-                    <div class="field qty">
-                        <input type="number"
-                               name="qty"
-                               id="qty"
-                               min="0"
-                               value="<?= $block->getProductDefaultQty() * 1 ?>"
-                               title="<?= $block->escapeHtmlAttr(__('Qty')) ?>"
-                               class="input-text qty"
-                               data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
-                               data-bind="value: qty()"/>
+            <div class="qty-stock-row">
+                <?php if ($block->shouldRenderQuantity()) :?>
+                    <div class="qty-row" data-bind="scope: 'qty-counter'">
+                        <button class="qty-button decrement" data-bind="click: decreaseQty">-</button>
+                        <div class="field qty">
+                            <input type="number"
+                                   name="qty"
+                                   id="qty"
+                                   min="0"
+                                   value="<?= $block->getProductDefaultQty() * 1 ?>"
+                                   title="<?= $block->escapeHtmlAttr(__('Qty')) ?>"
+                                   class="input-text qty"
+                                   data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                                   data-bind="value: qty()"/>
+                        </div>
+                        <button class="qty-button increment" data-bind="click: increaseQty">+</button>
                     </div>
-                    <button class="qty-button increment" data-bind="click: increaseQty">+</button>
-                </div>
-            <?php endif; ?>
-            <!--            <div><?php /*= $_product->getQty() */?> Product is in stock</div>
--->
+                <?php endif; ?>
+                <?php if ($block->displayProductStockStatus()) :?>
+                    <?php if ($_product->isAvailable()) :?>
+                        <div class="stock available" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+                            <img src="<?php echo $this->getViewFileUrl('Magento_Catalog::images/in-stock.svg'); ?>"/>
+                            <span class="in-stock-normal">
+                                <b>IN STOCK </b><?= $_product->getExtensionAttributes()->getStockItem()->getQty() ?> items available
+                            </span>
+                        </div>
+                    <?php else :?>
+                        <div class="stock unavailable" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+                            <span><?= $block->escapeHtml(__('Out of stock')) ?></span>
+                        </div>
+                    <?php endif; ?>
+                <?php endif; ?>
+            </div>
             <div class="actions">
                 <button type="submit"
                         title="<?= $block->escapeHtmlAttr($buttonTitle) ?>"
@@ -41,6 +55,7 @@
                 <?= $block->getChildHtml('', true) ?>
             </div>
         </div>
+
     </div>
 <?php endif; ?>
 <script type="text/x-magento-init">

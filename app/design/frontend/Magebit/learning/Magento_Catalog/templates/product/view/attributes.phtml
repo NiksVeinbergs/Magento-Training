@@ -1,0 +1,57 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+
+/**
+ * Product additional attributes template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Attributes
+ */
+?>
+<?php
+$_helper = $this->helper(Magento\Catalog\Helper\Output::class);
+$_product = $block->getProduct();
+
+$allAttributes = $block->getAdditionalData();
+$neededAttributes = ['battery_mah', 'screen_size', 'resolution'];
+$usedAttributes = [];
+
+if ($allAttributes) {
+    foreach ($allAttributes as $_data) {
+        //At first get neededAttributes and store in usedAttributes array
+        if (in_array($_data['code'], $neededAttributes)) {
+            $usedAttributes[$_data['code']] = [
+                'label' => $_data['label'],
+                'code' => $_data['code'],
+                'value' => $_data['value']
+            ];
+        }
+    }
+    //Then get additional attributes if needed are missing and store in usedAttributes array
+    foreach ($allAttributes as $_data) {
+        if (!array_search($_data['code'], array_column($usedAttributes, 'code')) && count($usedAttributes) < count($neededAttributes)) {
+            $usedAttributes[$_data['code']] = [
+                'label' => $_data['label'],
+                'code' => $_data['code'],
+                'value' => $_data['value'],
+            ];
+        }
+    }
+}
+?>
+
+<div class="attribute-container">
+    <ul>
+        <?php foreach ($usedAttributes as $attribute): ?>
+            <li>
+                <b><?= $attribute['label'] ?>:</b>
+                <?= $attribute['value']?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+    <span class="short-description"><?= $_product->getShortDescription(); ?></span>
+</div>

@@ -12,8 +12,10 @@
 .action.primary.tocart {
     background-color: @orange;
     width:100%;
+    height:100%;
     border: 0px;
 }
+
 .box-tocart .action.tocart:not(:last-child){
     margin-bottom: 40px;
 }
@@ -37,6 +39,10 @@
     color: @orange;
 }
 
+.product-reviews-summary .reviews-actions a:not(:last-child){
+    margin-right:20px;
+}
+
 .action.add {
     width:117px;
     height:28px;
@@ -57,14 +63,14 @@
     font: normal normal normal 12px/17px Open Sans;
     letter-spacing: 0px;
     color: @black;
+    padding-left: 40px;
 }
 
 .qty-row{
     display:flex;
-    justify-content: space-between;
     height:52px;
     width:190px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 }
 
 #qty{
@@ -115,8 +121,13 @@
     border-radius:2px;
     width:109px;
     height:32px;
-    color: white;
-    font: 700 11px Open Sans;
+    font: normal normal 600 14px/19px Open Sans;
+    letter-spacing: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white !important;
+    text-decoration: none !important;
 }
 
 .upsell-row {
@@ -132,24 +143,140 @@
     padding-left: 15px;
     display:flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     width:50%;
 }
 .view-product-div {
     display:flex;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-end;
     width:25%;
+    text-align: right;
 }
 .upsell-name {
     font: normal normal 600 16px/22px Open Sans;
+    margin-bottom: 4px;
+
 }
-.upsell-price {
-    font: normal normal 600 18px/24px Open Sans;
+.normal-price {
+    font: normal normal 600 18px/24px Open Sans !important;
 }
 .products {
-    margin:10px;
+    margin-top:10px;
 }
 .product-reviews-summary {
-    margin-bottom: 30px;
+    margin-bottom: 25px;
+}
+
+.product-info-price {
+    display:flex !important;
+    flex-direction: row;
+    border-bottom: 0px !important;
+}
+.product.attribute.sku{
+    display:flex !important;
+    margin-left: 16px;
+    align-items: center;
+}
+
+.product-info-main.product-info-price.price-box{
+    vertical-align: middle;
+}
+
+.product-info-main .product-info-price .price-box .price-container > span{
+    margin-bottom: 0px;
+}
+.product-options-bottom .price-box, .product-info-price .price-box{
+    padding-bottom: 0px;
+}
+.in-stock-normal {
+    padding-left: 5px;
+    text-align: left;
+    font: normal normal normal 14px/19px Open Sans;
+    letter-spacing: 0px;
+    color: @black;
+}
+.product-info-main .stock.available, .product-info-main .stock.unavailable{
+    margin-left: 20px;
+    text-transform: none;
+    display: flex; /* Enable flexbox */
+    align-items: center; /* Align items vertically */
+
+}
+
+.qty-stock-row{
+    display: flex;
+    justify-content: start;
+    vertical-align: middle;
+    margin-bottom: 20px;
+}
+
+.product-item-info {
+    width:224px !important;
+    height:444px;
+}
+
+.products {
+    margin-top: 0px;
+}
+
+.image-center {
+    display:flex;
+    justify-content: center;
+}
+
+.product-item-link {
+    font: normal normal 600 16px/22px Open Sans;
+    letter-spacing: 0px;
+}
+.abs-product-link > a:visited, .product-item-name > a:visited, .product.name a > a:visited{
+    font: normal normal 600 16px/22px Open Sans;
+    letter-spacing: 0px;
+}
+.product-item .price-box .price{
+    font: normal normal bold 22px/30px Open Sans;
+    letter-spacing: 0px;
+}
+
+.related-item-div{
+    height:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.actions-primary{
+    width:204px;
+    height:52px;
+}
+
+form {
+    width:100%;
+    height:100%;
+}
+
+.actions-primary{
+    display:flex !important;
+    justify-content: center;
+    margin-right:0px;
+}
+.related-add-to-cart{
+    font: normal normal 600 18px/24px Open Sans;
+    letter-spacing: 0px;
+}
+
+#block-related-heading{
+    font: normal normal 600 24px/33px Open Sans;
+    letter-spacing: 0px;
+}
+#block-upsell-heading{
+    font: normal normal bold 16px/22px Open Sans;
+    letter-spacing: 0px;
+}
+
+.page-layout-1column .products-grid .product-item {
+    margin-left:15px;
+    margin-right:15px;
+    width:224px !important;
 }
