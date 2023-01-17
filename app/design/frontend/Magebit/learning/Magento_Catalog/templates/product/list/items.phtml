@@ -182,7 +182,7 @@ $_item = null;
             <?php endif; ?>
             <div class="block-title title">
                 <span id="block-<?= $block->escapeHtmlAttr($class) ?>-heading" role="heading"
-                        aria-level="2"><?= $block->escapeHtml($title) ?></span>
+                      aria-level="2"><?= $block->escapeHtml($title) ?></span>
             </div>
             <div class="upsell-divider"></div>
             <div class="block-content content" aria-labelledby="block-<?= $block->escapeHtmlAttr($class) ?>-heading">
@@ -241,19 +241,24 @@ $_item = null;
                                                class="product photo product-item-photo image-center">
                                                 <?= $block->getImage($_item, $image)->toHtml() ?>
                                             </a>
-                                            <strong class="product name product-item-name"><a
-                                                    class="product-item-link"
-                                                    title="<?= $block->escapeHtmlAttr($_item->getName()) ?>"
-                                                    href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>">
-                                                    <?= $block->escapeHtml($_item->getName()) ?></a>
-                                            </strong>
-                                            <?php if ($templateType):?>
-                                                <?= $block->getReviewsSummaryHtml($_item, $templateType) ?>
-                                            <?php endif; ?>
-                                            <?= /* @noEscape */ $block->getProductPrice($_item) ?>
-
                                         </div>
-                                        <div>
+                                            <div class="text-rating-price">
+                                                <div class="text-rating">
+                                                    <strong class="product name product-item-name"><a
+                                                            class="product-item-link"
+                                                            title="<?= $block->escapeHtmlAttr($_item->getName()) ?>"
+                                                            href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>">
+                                                            <?= $block->escapeHtml($_item->getName()) ?></a>
+                                                    </strong>
+                                                    <?php if ($templateType):?>
+                                                        <?= $block->getReviewsSummaryHtml($_item, $templateType) ?>
+                                                    <?php endif; ?>
+                                                </div>
+                                                <div class="price">
+                                                    <?= /* @noEscape */ $block->getProductPrice($_item) ?>
+                                                </div>
+                                            </div>
+                                        <div class="related-add-to-cart-button">
                                             <?php if ($canItemsAddToCart && !$_item->isComposite() && $_item->isSaleable()
                                                 && $type == 'related'):?>
                                                 <?php if (!$_item->getRequiredOptions()):?>
