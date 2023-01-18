@@ -21,8 +21,8 @@ $neededAttributes = ['battery_mah', 'screen_size', 'resolution'];
 $usedAttributes = [];
 
 if ($allAttributes) {
+    //At first get neededAttributes and store in usedAttributes array
     foreach ($allAttributes as $_data) {
-        //At first get neededAttributes and store in usedAttributes array
         if (in_array($_data['code'], $neededAttributes)) {
             $usedAttributes[$_data['code']] = [
                 'label' => $_data['label'],

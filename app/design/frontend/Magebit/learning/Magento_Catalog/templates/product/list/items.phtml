@@ -184,7 +184,7 @@ $_item = null;
                 <span id="block-<?= $block->escapeHtmlAttr($class) ?>-heading" role="heading"
                       aria-level="2"><?= $block->escapeHtml($title) ?></span>
             </div>
-            <div class="upsell-divider"></div>
+            <div class="related-divider"></div>
             <div class="block-content content" aria-labelledby="block-<?= $block->escapeHtmlAttr($class) ?>-heading">
                 <?php if ($type == 'related' && $canItemsAddToCart):?>
                     <div class="block-actions">
@@ -219,8 +219,8 @@ $_item = null;
                                     </div>
                                     <div class="name-rating-price">
                                         <div class="name-rating">
-                                            <span class="upsell-name"><?= $block->escapeHtml($_item->getName()) ?></span>
-                                            <?= $block->getReviewsSummaryHtml($_item, 'short', false) ?>
+                                            <div class="upsell-name"><?= $block->escapeHtml($_item->getName()) ?></div>
+                                            <div><?= $block->getReviewsSummaryHtml($_item, 'short', false) ?></div>
                                         </div>
                                         <div class="price">
                                             <span class="upsell-price"><?= /* @noEscape */ $block->getProductPrice($_item) ?></span>
