@@ -17,7 +17,7 @@ $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
 $_product = $block->getProduct();
 
 $allAttributes = $block->getAdditionalData();
-$neededAttributes = ['battery_mah', 'screen_size', 'resolution'];
+$neededAttributes = ['activity', 'material', 'resolution'];
 $usedAttributes = [];
 
 if ($allAttributes) {
@@ -45,7 +45,7 @@ if ($allAttributes) {
 ?>
 
 <div class="attribute-container">
-    <ul>
+    <ul class="list">
         <?php foreach ($usedAttributes as $attribute): ?>
             <li>
                 <b><?= $attribute['label'] ?>:</b>
@@ -53,5 +53,5 @@ if ($allAttributes) {
             </li>
         <?php endforeach; ?>
     </ul>
-    <span class="short-description"><?= $_product->getShortDescription(); ?></span>
+    <div class="short-description"><?= $_product->getShortDescription(); ?></div>
 </div>

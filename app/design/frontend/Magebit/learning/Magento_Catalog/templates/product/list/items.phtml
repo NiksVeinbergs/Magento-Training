@@ -186,13 +186,6 @@ $_item = null;
             </div>
             <div class="related-divider"></div>
             <div class="block-content content" aria-labelledby="block-<?= $block->escapeHtmlAttr($class) ?>-heading">
-                <?php if ($type == 'related' && $canItemsAddToCart):?>
-                    <div class="block-actions">
-                        <?= $block->escapeHtml(__('Check items to add to the cart or')) ?>
-                        <button type="button" class="action select"
-                                data-role="select-all"><span><?= $block->escapeHtml(__('select all')) ?></span></button>
-                    </div>
-                <?php endif; ?>
                 <div class="products wrapper grid products-grid products-<?= $block->escapeHtmlAttr($type) ?>">
                     <ol class="products list items product-items">
                         <?php foreach ($items as $_item):?>
@@ -264,12 +257,6 @@ $_item = null;
                                             && $type == 'related'):?>
                                             <?php if (!$_item->getRequiredOptions()):?>
                                                 <div class="field choice related">
-                                                    <input
-                                                        type="checkbox"
-                                                        class="checkbox related"
-                                                        id="related-checkbox<?= $block->escapeHtmlAttr($_item->getId()) ?>"
-                                                        name="related_products[]"
-                                                        value="<?= $block->escapeHtmlAttr($_item->getId()) ?>" />
                                                     <label class="label"
                                                            for="related-checkbox<?= $block->escapeHtmlAttr($_item->getId())
                                                            ?>"><span class="related-add-to-cart"><?= $block->escapeHtml(__('Add to Cart')) ?></span>
