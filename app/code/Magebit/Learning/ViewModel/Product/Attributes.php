@@ -4,7 +4,7 @@
  * @copyright    Copyright (c) 2023
  */
 declare(strict_types=1);
-namespace Magebit\learning\Magento_Catalog\ViewModel\Product;
+namespace Magebit\Learning\ViewModel\Product;
 
 /**
  * Class Attributes

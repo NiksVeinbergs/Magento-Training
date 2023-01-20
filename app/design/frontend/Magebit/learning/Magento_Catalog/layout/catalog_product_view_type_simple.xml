@@ -16,7 +16,7 @@
             <arguments>
                 <argument translate="true" name="title" xsi:type="string">More Information</argument>
                 <argument name="sort_order" xsi:type="string">20</argument>
-                <argument name="view_model" xsi:type="object">Magebit\learning\Magento_Catalog\ViewModel\Product\Attributes</argument>
+                <argument name="view_model" xsi:type="object">Magebit\Learning\ViewModel\Product\Attributes</argument>
             </arguments>
         </block>
         <move element="product.info.upsell" destination="product.info.addtocart" />
