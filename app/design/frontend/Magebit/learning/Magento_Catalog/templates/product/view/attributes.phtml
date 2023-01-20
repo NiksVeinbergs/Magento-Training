@@ -19,8 +19,11 @@ $_product = $block->getProduct();
 $viewModel = $block->getViewModel();
 
 $allAttributes = $block->getAdditionalData();
-$validAttributes = $allAttributes ? $viewModel->getSortedAttributes($allAttributes) : [];
-
+if ($viewModel) {
+    $validAttributes = $allAttributes ? $viewModel->getSortedAttributes($allAttributes) : [];
+} else {
+    $validAttributes = $allAttributes ? $allAttributes : [];
+}
 ?>
 
 <div class="attribute-container">
