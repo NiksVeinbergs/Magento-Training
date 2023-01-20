@@ -22,14 +22,13 @@ use Magento\Widget\Block\BlockInterface;
 
 class PageList extends Template implements BlockInterface
 {
+    const DISPLAY_MODE_SELECTED_PAGES = 2;
+    const SELECTED_PAGES = 'pages';
     protected $_template = "page-list.phtml";
     protected \Magento\Cms\Api\PageRepositoryInterface $_pageRepository;
     protected \Magento\Cms\Helper\Page $_pageHelper;
     protected \Magento\Framework\Api\SearchCriteriaBuilder $_searchCriteriaBuilder;
     protected \Magento\Framework\Api\FilterBuilder $_filterBuilder;
-    protected array $pages;
-    protected string $title;
-    protected string $displayMode;
 
     /**
      * @param Context $context
@@ -37,9 +36,6 @@ class PageList extends Template implements BlockInterface
      * @param PageRepositoryInterface $pageRepository
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param FilterBuilder $filterBuilder
-     * @param array $pages
-     * @param string $title
-     * @param string $displayMode
      * @param array $data
      */
     public function __construct(
@@ -48,9 +44,6 @@ class PageList extends Template implements BlockInterface
         \Magento\Cms\Api\PageRepositoryInterface $pageRepository,
         \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder,
         \Magento\Framework\Api\FilterBuilder $filterBuilder,
-        array $pages = [],
-        string $title = '',
-        string $displayMode = '',
         array $data = []
     ) {
         parent::__construct($context, $data);
@@ -58,55 +51,51 @@ class PageList extends Template implements BlockInterface
         $this->_pageHelper = $pageHelper;
         $this->_searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->_filterBuilder = $filterBuilder;
-        $this->pages = $pages;
-        $this->title = $title;
-        $this->displayMode = $displayMode;
     }
 
     /**
-     * Short description.
      *Returns input title as a String
+     *
      * @return string
      */
     public function getTitle(): string
     {
-        $this->title = $this->getData('title');
-        return $this->title;
+        return $this->getData('title');
     }
 
     /**
-     * Short description.
      * Returns display mode as a string
+     *
      * @return string
      */
     public function getDisplayMode(): string
     {
-        $this->displayMode = $this->getData('display_mode');
-        return $this->displayMode;
+        return $this->getData('display_mode');
     }
 
     /**
-     * Short description.
-     *Based on display mode, returns specific pages (adds additional filter) or if display mode is == 1 returns all pages w/o filter
+     *Based on display mode, returns specific pages (adds additional filter) or returns all pages w/o filter
+     *
      * @return array
      * @throws LocalizedException
      */
     public function getPages(): array
     {
+        $pages = [];
         $filters =[];
-        if ($this->getDisplayMode() == '2') {
-            $selectedPageIds = explode(',', $this->getData('pages'));
+        if ($this->getDisplayMode() == self::DISPLAY_MODE_SELECTED_PAGES) {
+            $selectedPageIds = explode(',', $this->getData(self::SELECTED_PAGES));
             $filters[] = $this->_filterBuilder->setField('identifier')->setValue($selectedPageIds)->setConditionType('in')->create();
         }
 
         $searchCriteria = $this->_searchCriteriaBuilder->addFilters($filters)->create();
         $searchResults = $this->_pageRepository->getList($searchCriteria);
         foreach ($searchResults->getItems() as $page) {
-            $this->pages[] = [
+            $pages[] = [
                 'url' => $this->_pageHelper->getPageUrl($page->getId()),
                 'name' => $page->getTitle()
             ];
         }
-        return $this->pages;
+        return $pages;
     }
 }

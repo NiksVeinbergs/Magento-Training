@@ -10,43 +10,22 @@
  * Product additional attributes template
  *
  * @var $block \Magento\Catalog\Block\Product\View\Attributes
+ * @var $viewModel \Magebit\learning\Magento_Catalog\ViewModel\Product\Attributes
  */
 ?>
 <?php
 $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
 $_product = $block->getProduct();
+$viewModel = $block->getViewModel();
 
 $allAttributes = $block->getAdditionalData();
-$neededAttributes = ['activity', 'material', 'resolution'];
-$usedAttributes = [];
+$validAttributes = $allAttributes ? $viewModel->getSortedAttributes($allAttributes) : [];
 
-if ($allAttributes) {
-    //At first get neededAttributes and store in usedAttributes array
-    foreach ($allAttributes as $_data) {
-        if (in_array($_data['code'], $neededAttributes)) {
-            $usedAttributes[$_data['code']] = [
-                'label' => $_data['label'],
-                'code' => $_data['code'],
-                'value' => $_data['value']
-            ];
-        }
-    }
-    //Then get additional attributes if needed are missing and store in usedAttributes array
-    foreach ($allAttributes as $_data) {
-        if (!array_search($_data['code'], array_column($usedAttributes, 'code')) && count($usedAttributes) < count($neededAttributes)) {
-            $usedAttributes[$_data['code']] = [
-                'label' => $_data['label'],
-                'code' => $_data['code'],
-                'value' => $_data['value'],
-            ];
-        }
-    }
-}
 ?>
 
 <div class="attribute-container">
     <ul class="list">
-        <?php foreach ($usedAttributes as $attribute): ?>
+        <?php foreach ($validAttributes as $attribute): ?>
             <li>
                 <b><?= $attribute['label'] ?>:</b>
                 <?= $attribute['value']?>
