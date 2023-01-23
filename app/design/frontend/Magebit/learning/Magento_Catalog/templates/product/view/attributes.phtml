@@ -16,7 +16,7 @@
 <?php
 $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
 $_product = $block->getProduct();
-$viewModel = $block->getViewModel();
+$viewModel = $block->getData('view_model');
 
 $allAttributes = $block->getAdditionalData();
 if ($viewModel) {

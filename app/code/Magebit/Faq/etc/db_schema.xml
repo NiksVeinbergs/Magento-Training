@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="faq" resource="default" engine="innodb" comment="Students Table">
+        <column xsi:type="int" name="id" unsigned="true" nullable="false" identity="true" comment="FAQ ID"/>
+        <column xsi:type="text" name="question" nullable="false" comment="FAQ Question"/>
+        <column xsi:type="text" name="answer" nullable="false" comment="FAQ Answer"/>
+        <column xsi:type="smallint" name="status" default="0" nullable="false" comment="FAQ Status"/>
+        <column xsi:type="int" name="position" default="0" nullable="false" comment="FAQ Position"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="FAQ Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="FAQ_QUESTION_ANSWER" indexType="fulltext">
+            <column name="question"/>
+            <column name="answer"/>
+        </index>
+    </table>
+</schema>

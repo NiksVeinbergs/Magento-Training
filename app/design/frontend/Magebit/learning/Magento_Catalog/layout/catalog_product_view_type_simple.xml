@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <theme xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <body>
-        <referenceContainer name="product.info.type">
+<!--        <referenceContainer name="product.info.type">
             <block class="Magento\Catalog\Block\Product\View\Type\Simple" name="product.info.simple" as="product_type_data" template="Magento_Catalog::product/view/type/default.phtml"/>
             <container name="product.info.simple.extra" after="product.info.simple" as="product_type_data_extra" label="Product Extra Info"/>
         </referenceContainer>
@@ -16,12 +16,12 @@
             <arguments>
                 <argument translate="true" name="title" xsi:type="string">More Information</argument>
                 <argument name="sort_order" xsi:type="string">20</argument>
-                <argument name="view_model" xsi:type="object">Magebit\Learning\ViewModel\Product\Attributes</argument>
             </arguments>
         </block>
         <move element="product.info.upsell" destination="product.info.addtocart" />
         <move element="product.info.sku" destination="product.info.price"/>
-        <move element="product.attributes" destination="alert.urls"/>
+        <move element="product.attributes" destination="alert.urls"/>-->
+
     </body>
 </theme>
 

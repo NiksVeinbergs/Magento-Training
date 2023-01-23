@@ -28,3 +28,20 @@ $bootstrap = Bootstrap::create(BP, $_SERVER);
 /** @var \Magento\Framework\App\Http $app */
 $app = $bootstrap->createApplication(\Magento\Framework\App\Http::class);
 $bootstrap->run($app);
+
+/*$om = $bootstrap->getObjectManager();
+
+$questionResource = $om->get(\Magebit\Faq\Model\ResourceModel\Question::class);
+$question = $om->create(\Magebit\Faq\Model\Question::class);
+$question->setData([
+   'question' => '1 jaut',
+    'answer' => '1 atbilde'
+]);
+
+$questionResource->save($question);
+
+$collection = $om->get(\Magebit\Faq\Model\ResourceModel\Question\Collection::class);
+
+foreach ($collection->getItems() as $item) {
+    var_dump($item->getData());
+}*/
