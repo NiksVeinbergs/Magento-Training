@@ -10,7 +10,12 @@
 
 namespace Magebit\Faq\Ui\Component\Form\Button;
 
-class Delete
-{
+use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
+class Delete implements ButtonProviderInterface
+{
+    public function getButtonData()
+    {
+        // TODO: Implement getButtonData() method.
+    }
 }

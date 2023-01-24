@@ -6,9 +6,9 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
-    <router id="admin">
-        <route id="magebit_faq" frontName="magebit_faq">
-            <module name="Magebit_Faq" before="Magento_Backend" />
+    <router id="standard">
+        <route id="magebit_faq" frontName="faq">
+            <module name="Magebit_Faq"/>
         </route>
     </router>
 </config>
