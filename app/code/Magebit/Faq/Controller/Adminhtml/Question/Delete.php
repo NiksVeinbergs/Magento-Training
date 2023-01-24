@@ -10,39 +10,36 @@
 
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
-use Magebit\Faq\Model\QuestionFactory;
-use Magebit\Faq\Model\ResourceModel\Question as QuestionResource;
+use Magebit\Faq\Model\QuestionRepository;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\Exception\CouldNotDeleteException;
+use Magento\Framework\Exception\NoSuchEntityException;
 
 class Delete extends Action implements HttpPostActionInterface
 {
     public function __construct(
         Context $context,
-        private QuestionFactory $questionFactory,
-        private QuestionResource $resource
+        private QuestionRepository $questionRepository
     ) {
         parent::__construct($context);
     }
 
+    /**
+     * @throws NoSuchEntityException
+     * @throws CouldNotDeleteException
+     */
     public function execute() : ResultInterface
     {
         $questionId = (int) $this->getRequest()->getParam('id');
         $resultRedirect = $this->resultRedirectFactory->create();
-        if (!$questionId) {
-            $this->messageManager->addErrorMessage('No question to delete');
-            return $resultRedirect->setPath('*/*/');
-        }
-
-        $model = $this->questionFactory->create();
-        try {
-            $this->resource->load($model, $questionId);
-            $this->resource->delete($model);
+        $message = $this->questionRepository->deleteById($questionId);
+        if ($message) {
             $this->messageManager->addSuccessMessage('Question has been deleted');
-        } catch (\Throwable $e) {
-            $this->messageManager->addErrorMessage($e->getMessage());
+        } else {
+            $this->messageManager->addErrorMessage('No question to delete');
         }
         return $resultRedirect->setPath('*/*/');
     }
