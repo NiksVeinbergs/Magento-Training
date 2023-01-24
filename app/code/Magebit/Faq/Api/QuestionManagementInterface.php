@@ -10,7 +10,8 @@
 
 namespace Magebit\Faq\Api;
 
-interface QuestionManagementInterfance
+interface QuestionManagementInterface
 {
-
+    public function enableQuestion();
+    public function disableQuestion();
 }
