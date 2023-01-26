@@ -23,6 +23,7 @@ class Index implements HttpGetActionInterface
     {
         $page = $this->pageFactory->create();
         $page->getConfig()->getTitle()->set(__('Frequently Asked Questions'));
+        $page->getConfig()->setPageLayout('2columns');
 
         return $page;
     }

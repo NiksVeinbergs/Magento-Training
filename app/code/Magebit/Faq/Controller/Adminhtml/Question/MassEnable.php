@@ -71,7 +71,6 @@ class MassEnable extends Action implements HttpPostActionInterface
         $collectionSize = $collection->getSize();
 
         foreach ($collection as $question) {
-
             $this->questionManagement->enableQuestion($question);
         }
 
@@ -79,6 +78,7 @@ class MassEnable extends Action implements HttpPostActionInterface
 
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+
         return $resultRedirect->setPath('*/*/');
     }
 }
