@@ -12,8 +12,10 @@ namespace Magebit\Faq\Api\Data;
 
 use Magento\Framework\Api\SearchResultsInterface;
 
+/**
+ * Interface QuestionSearchResultsInterface
+ */
 interface QuestionSearchResultsInterface extends SearchResultsInterface
 {
-    public function getItems();
-    public function setItems(array $items);
+
 }

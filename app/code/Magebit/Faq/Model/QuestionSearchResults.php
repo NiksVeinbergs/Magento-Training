@@ -7,13 +7,15 @@
  * @author       Niks Veinbergs
  * @copyright    Copyright (c) 2023 Magebit, Ltd.(https://www.magebit.com/)
  */
-
+declare(strict_types=1);
 namespace Magebit\Faq\Model;
 
 use Magebit\Faq\Api\Data\QuestionSearchResultsInterface;
-use Magento\Cms\Api\Data\BlockSearchResultsInterface;
 use Magento\Framework\Api\SearchResults;
 
+/**
+ * Class QuestionSearchResults
+ */
 class QuestionSearchResults extends SearchResults implements QuestionSearchResultsInterface
 {
 
