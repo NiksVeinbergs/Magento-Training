@@ -14,7 +14,7 @@ use Magento\Framework\Api\SearchCriteriaInterface;
 
 interface QuestionRepositoryInterface
 {
-    public function get(Data\QuestionInterface $question);
+    public function getById($questionId);
     public function save(Data\QuestionInterface $question);
     public function getList(SearchCriteriaInterface $searchCriteria);
     public function delete(Data\QuestionInterface $question);

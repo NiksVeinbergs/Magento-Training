@@ -7,7 +7,7 @@
         </action>
     </referenceBlock>
     <referenceBlock name="content">
-        <block template="Magebit_Faq::question-list.phtml" as="question-list"/>
+        <block class="Magebit\Faq\Block\QuestionList" template="Magebit_Faq::question-list.phtml" as="question-list"/>
     </referenceBlock>
 </body>
 </page>

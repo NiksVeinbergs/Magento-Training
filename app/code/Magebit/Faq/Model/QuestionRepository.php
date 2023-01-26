@@ -19,6 +19,7 @@ use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magebit\Faq\Api\Data\QuestionSearchResultsInterfaceFactory;
 
 class QuestionRepository implements QuestionRepositoryInterface
 {
@@ -33,20 +34,35 @@ class QuestionRepository implements QuestionRepositoryInterface
         QuestionFactory $questionFactory,
         \Magebit\Faq\Api\Data\QuestionInterfaceFactory $dataQuestionFactory,
         QuestionCollectionFactory $questionCollectionFactory,
-        Data\QuestionSearchResultsInterfaceFactory $searchResultsFactory,
+        QuestionSearchResultsInterfaceFactory $searchResultsFactory,
+        CollectionProcessorInterface $collectionProcessor
+
     ) {
         $this->resource = $resource;
         $this->questionFactory = $questionFactory;
         $this->dataQuestionFactory = $dataQuestionFactory;
         $this->questionCollectionFactory = $questionCollectionFactory;
         $this->searchResultsFactory = $searchResultsFactory;
+        $this->collectionProcessor = $collectionProcessor;
     }
-    public function get(Data\QuestionInterface $question)
+
+    /**
+     * @throws NoSuchEntityException
+     */
+    public function getById($questionId): Question
     {
+        $question = $this->questionFactory->create();
+        $this->resource->load($question, $questionId);
+        if (!$question->getId()) {
+            throw new NoSuchEntityException(__('The Question with the "%1" ID doesn\'t exist.', $questionId));
+        }
         return $question;
     }
 
-    public function save(Data\QuestionInterface $question)
+    /**
+     * @throws CouldNotSaveException
+     */
+    public function save(Data\QuestionInterface $question): Data\QuestionInterface
     {
         try {
             $this->resource->save($question);
@@ -62,15 +78,14 @@ class QuestionRepository implements QuestionRepositoryInterface
 
         $this->collectionProcessor->process($searchCriteria, $collection);
 
-        /** @var Data\QuestionSearchResultsInterface $searchResults */
         $searchResults = $this->searchResultsFactory->create();
         $searchResults->setSearchCriteria($searchCriteria);
         $searchResults->setItems($collection->getItems());
         $searchResults->setTotalCount($collection->getSize());
-        return $searchResults;
+        return $searchResults->getItems();
     }
 
-    public function delete(Data\QuestionInterface $question)
+    public function delete(Data\QuestionInterface $question): bool
     {
         try {
             $this->resource->delete($question);
@@ -84,7 +99,7 @@ class QuestionRepository implements QuestionRepositoryInterface
      * @throws CouldNotDeleteException
      * @throws NoSuchEntityException
      */
-    public function deleteById($questionId)
+    public function deleteById($questionId): bool
     {
         $question = $this->questionFactory->create();
         $this->resource->load($question, $questionId);
@@ -97,6 +112,5 @@ class QuestionRepository implements QuestionRepositoryInterface
         } catch (\Exception $exception) {
             throw new CouldNotDeleteException(__($exception->getMessage()));
         }
-        return false;
     }
 }

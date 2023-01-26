@@ -1,8 +1,24 @@
 <?php
-/** @var $block Template */
+/** @var QuestionList $block */
 
-use Magento\Framework\View\Element\Template;
+use Magebit\Faq\Block\QuestionList;
 
-$questionsViewModel = $block->getData('questions_view_model');
-$collection
+$questions = $block->getQuestionList();
 ?>
+<div id="accordion" data-mage-init='{
+    "accordion":{
+        "active": [0],
+        "collapsible": true,
+        "openedState": "active",
+        "multipleCollapsible": true
+    }}'>
+    <?php foreach ($questions as $question): ?>
+        <div data-role="collapsible">
+            <div class="faq-block-question" data-role="trigger">
+                <h4><?= $question->getQuestion() ?></h4>
+            </div>
+        </div>
+        <div class="faq-block-answer" data-role="content"><?= $question->getAnswer() ?></div>
+    <?php endforeach;?>
+</div>
+

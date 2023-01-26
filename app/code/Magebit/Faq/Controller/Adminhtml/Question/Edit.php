@@ -20,10 +20,12 @@ class Edit extends Action implements HttpGetActionInterface
 {
     public function execute(): Page
     {
+        $id = $this->getRequest()->getParam('id');
+        $text = $id ? sprintf('Question: %u', $id) : __('New Question');
         $pageResult = $this->createPageResult();
         $title = $pageResult->getConfig()->getTitle();
         $title->prepend(__('Questions'));
-        $title->prepend(__('New Question'));
+        $title->prepend($text);
 
         return $pageResult;
     }

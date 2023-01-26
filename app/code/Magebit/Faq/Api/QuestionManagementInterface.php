@@ -10,8 +10,12 @@
 
 namespace Magebit\Faq\Api;
 
+use Magebit\Faq\Model\Question;
+
 interface QuestionManagementInterface
 {
-    public function enableQuestion();
-    public function disableQuestion();
+    const STATUS_ENABLED = 1;
+    const STATUS_DISABLED = 0;
+    public function enableQuestion(Question $question);
+    public function disableQuestion(Question $question);
 }
