@@ -68,7 +68,8 @@ class Save extends Action implements HttpPostActionInterface
             $model->setData($data);
             try {
                 $this->questionRepository->save($model);
-                $this->messageManager->addSuccessMessage(__('Successfully created new FAQ'));
+                $messageText = $id ? __('Question: %1 Successfully edited', $id) : __('Successfully created new FAQ');
+                $this->messageManager->addSuccessMessage($messageText);
                 return $this->processQuestionReturn($model, $data, $resultRedirect);
             } catch (LocalizedException $exception) {
                 $this->messageManager->addExceptionMessage($exception);
