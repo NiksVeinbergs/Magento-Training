@@ -17,5 +17,5 @@ use Magento\Framework\Api\SearchResultsInterface;
  */
 interface QuestionSearchResultsInterface extends SearchResultsInterface
 {
-
+//TODO Needs something?
 }

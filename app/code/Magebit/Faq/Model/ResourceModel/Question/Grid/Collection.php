@@ -3,24 +3,25 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
 namespace Magebit\Faq\Model\ResourceModel\Question\Grid;
 
-use Magento\Framework\Api\Search\SearchResultInterface;
+use Magebit\Faq\Model\ResourceModel\Question\Collection as QuestionCollection;
+use Magento\Framework\Api\ExtensibleDataInterface;
 use Magento\Framework\Api\Search\AggregationInterface;
-use Magento\Framework\App\ObjectManager;
+use Magento\Framework\Api\Search\SearchResultInterface;
+use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Data\Collection\Db\FetchStrategyInterface;
 use Magento\Framework\Data\Collection\EntityFactoryInterface;
-use Magento\Framework\DB\Adapter\AdapterInterface;
-use Magento\Framework\EntityManager\MetadataPool;
 use Magento\Framework\Event\ManagerInterface;
-use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
-use Magento\Store\Model\StoreManagerInterface;
+use Magento\Framework\View\Element\UiComponent\DataProvider\Document;
 use Psr\Log\LoggerInterface;
-use Magebit\Faq\Model\ResourceModel\Question\Collection as QuestionCollection;
 
 /**
- * Collection for displaying grid of cms blocks
+ * Collection for displaying grid of FAQ's
+ *
  */
 class Collection extends QuestionCollection implements SearchResultInterface
 {
@@ -34,19 +35,16 @@ class Collection extends QuestionCollection implements SearchResultInterface
      */
     protected $aggregations;
 
-
     /**
      * @param EntityFactoryInterface $entityFactory
      * @param LoggerInterface $logger
      * @param FetchStrategyInterface $fetchStrategy
      * @param ManagerInterface $eventManager
-     * @param StoreManagerInterface $storeManager
-     * @param MetadataPool $metadataPool
      * @param $mainTable
      * @param $eventPrefix
      * @param $eventObject
      * @param $resourceModel
-     * @param $model
+     * @param string $model
      */
     public function __construct(
         EntityFactoryInterface $entityFactory,
@@ -57,7 +55,7 @@ class Collection extends QuestionCollection implements SearchResultInterface
         $eventPrefix,
         $eventObject,
         $resourceModel,
-        $model = \Magento\Framework\View\Element\UiComponent\DataProvider\Document::class
+        string $model = Document::class
     ) {
         parent::__construct(
             $entityFactory,
@@ -72,9 +70,15 @@ class Collection extends QuestionCollection implements SearchResultInterface
     }
 
     /**
-     * @inheritDoc
+     * Description.
+     *
+     *
+     * @param $field
+     * @param $condition
+     * @return Collection
+     * @throws LocalizedException
      */
-    public function addFieldToFilter($field, $condition = null)
+    public function addFieldToFilter($field, $condition = null) //
     {
         if ($field === 'creation_time' || $field === 'update_time') {
             if (is_array($condition)) {
@@ -112,7 +116,7 @@ class Collection extends QuestionCollection implements SearchResultInterface
     /**
      * Get search criteria.
      *
-     * @return \Magento\Framework\Api\SearchCriteriaInterface|null
+     * @return SearchCriteriaInterface|null
      */
     public function getSearchCriteria()
     {
@@ -122,11 +126,11 @@ class Collection extends QuestionCollection implements SearchResultInterface
     /**
      * Set search criteria.
      *
-     * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
+     * @param SearchCriteriaInterface $searchCriteria
      * @return $this
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function setSearchCriteria(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria = null)
+    public function setSearchCriteria(SearchCriteriaInterface $searchCriteria = null)
     {
         return $this;
     }
@@ -156,7 +160,7 @@ class Collection extends QuestionCollection implements SearchResultInterface
     /**
      * Set items list.
      *
-     * @param \Magento\Framework\Api\ExtensibleDataInterface[] $items
+     * @param ExtensibleDataInterface[] $items
      * @return $this
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */

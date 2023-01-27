@@ -18,5 +18,5 @@ use Magento\Framework\Api\SearchResults;
  */
 class QuestionSearchResults extends SearchResults implements QuestionSearchResultsInterface
 {
-
+//TODO Needs something?
 }
