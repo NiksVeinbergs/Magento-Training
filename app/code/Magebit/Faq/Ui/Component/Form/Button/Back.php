@@ -12,18 +12,19 @@ namespace Magebit\Faq\Ui\Component\Form\Button;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
+/**
+ * Class Back
+ */
 class Back implements ButtonProviderInterface
 {
+    /**
+     * Description.
+     *Back button currently not used, maybe will need to implement. Using button from CMS block instead
+     *
+     * @return array
+     */
     public function getButtonData() : array
     {
-/*        return [
-            'ļabel' => __('Back'),
-            'on_click' => sprintf("location.href = '%s'", $this->getBackUrl()),
-            'class' => 'back',
-            'data_attribute' => [
-                'mage-init' => ['button' => ['event' => 'save']],
-                'form-role' => 'save'
-            ],
-        ];*/
+        // TODO: Implement getButtonData() method. (But its working w/o this class (using CMS block redirect /*/* which is the same)
     }
 }

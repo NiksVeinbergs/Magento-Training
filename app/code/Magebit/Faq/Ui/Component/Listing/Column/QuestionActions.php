@@ -16,11 +16,27 @@ use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Ui\Component\Listing\Columns\Column;
 
+/**
+ * Class QuestionActions
+ */
 class QuestionActions extends Column
 {
+
+    /**#@+
+     * Constants for URL Paths.
+     */
     private const URL_PATH_EDIT = 'magebit_faq/question/edit';
     private const URL_PATH_DELETE = 'magebit_faq/question/delete';
+    /**#@-*/
 
+    /**
+     * @param ContextInterface $context
+     * @param UiComponentFactory $uiComponentFactory
+     * @param UrlInterface $urlBuilder
+     * @param Escaper $escaper
+     * @param array $components
+     * @param array $data
+     */
     public function __construct(
         ContextInterface $context,
         UiComponentFactory $uiComponentFactory,
@@ -32,6 +48,13 @@ class QuestionActions extends Column
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 
+    /**
+     * Description.
+     *Preparing data source for Edit/Delete
+     *
+     * @param array $dataSource
+     * @return array
+     */
     public function prepareDataSource(array $dataSource): array
     {
         if (isset($dataSource['data']['items'])) {
@@ -58,9 +81,16 @@ class QuestionActions extends Column
         return $dataSource;
     }
 
+    /**
+     * Description.
+     *Gets faq url with id
+     *
+     * @param array $item
+     * @param string $url
+     * @return string
+     */
     private function getCustomUrl(array $item, string $url) : string
     {
         return $this->urlBuilder->getUrl($url, ['id' => $item['id']]);
     }
-
 }

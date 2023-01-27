@@ -13,9 +13,18 @@ namespace Magebit\Faq\Ui\Component\Form\Button;
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 use Magento\Ui\Component\Control\Container;
 
+/**
+ * Class Save
+ */
 class Save implements ButtonProviderInterface
 {
-    public function getButtonData()
+    /**
+     * Description.
+     * Return Save and Save & Close button in FAQ form
+     *
+     * @return array
+     */
+    public function getButtonData(): array
     {
         return [
             'label' => __('Save'),
@@ -44,7 +53,14 @@ class Save implements ButtonProviderInterface
             'dropdown_button_aria_label' => __('Save options'),
         ];
     }
-    private function getOptions()
+
+    /**
+     * Description.
+     *Get options of Save Button
+     *
+     * @return array[]
+     */
+    private function getOptions(): array
     {
         $options = [
             [

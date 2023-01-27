@@ -7,7 +7,7 @@
  * @author       Niks Veinbergs
  * @copyright    Copyright (c) 2023 Magebit, Ltd.(https://www.magebit.com/)
  */
-declare(strict_types=1);
+//TODO Declaring strict types causes problem to save document
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
 use Magebit\Faq\Api\Data\QuestionInterface;
@@ -22,9 +22,6 @@ use Magento\Framework\Exception\AlreadyExistsException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
 
-/**
- * Class InlineEdit
- */
 class InlineEdit extends Action
 {
     /**
@@ -34,14 +31,8 @@ class InlineEdit extends Action
      */
     const ADMIN_RESOURCE = 'Magebit_Faq::question';
 
-    /**
-     * @var QuestionRepository
-     */
     protected $questionRepository;
 
-    /**
-     * @var JsonFactory
-     */
     protected $jsonFactory;
 
     /**
@@ -61,7 +52,7 @@ class InlineEdit extends Action
 
     /**
      * Description.
-     *Inline edits instance with help of json
+     *Inline Edits selected items
      *
      * @return ResponseInterface|Json|ResultInterface
      * @throws AlreadyExistsException
@@ -88,7 +79,7 @@ class InlineEdit extends Action
                     } catch (\Exception $e) {
                         $messages[] = $this->getErrorWithQuestionId(
                             $question,
-                            __($e->getMessage())
+                            (string)__($e->getMessage())
                         );
                         $error = true;
                     }
@@ -103,14 +94,13 @@ class InlineEdit extends Action
     }
 
     /**
-     * Description.
-     *Returns message of Error if inline edit was not succesful
+     * Add question id to error message
      *
      * @param QuestionInterface $question
-     * @param $errorText
+     * @param string $errorText
      * @return string
      */
-    protected function getErrorWithQuestionId(QuestionInterface $question, $errorText): string
+    protected function getErrorWithQuestionId(QuestionInterface $question, string $errorText): string
     {
         return '[Question ID: ' . $question->getId() . '] ' . $errorText;
     }
