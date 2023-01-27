@@ -17,16 +17,45 @@ use Magento\Framework\Api\SortOrderBuilder;
 use Magento\Framework\View\Element\Template;
 use Magento\Widget\Block\BlockInterface;
 
+/**
+ * Class QuestionList
+ */
 class QuestionList extends Template implements BlockInterface
 {
+    /**#@+
+     * Constants used for filtering purposes.
+     */
     const DATABASE_FIELD_POSITION = 'position';
     const DATABASE_FIELD_STATUS = 'status';
     const STATUS_ENABLED_VALUE = 1;
     const STATUS_CONDITION_TYPE_EQ = 'eq';
+    /**#@-*/
+
+    /**
+     * @var QuestionRepositoryInterface
+     */
     protected $questionRepository;
+    /**
+     * @var SearchCriteriaBuilder
+     */
     private $searchCriteriaBuilder;
+    /**
+     * @var SortOrder
+     */
     private $sortOrder;
+    /**
+     * @var SortOrderBuilder
+     */
     private $sortOrderBuilder;
+
+    /**
+     * @param QuestionRepositoryInterface $questionRepository
+     * @param SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param SortOrder $sortOrder
+     * @param SortOrderBuilder $sortOrderBuilder
+     * @param Template\Context $context
+     * @param array $data
+     */
     public function __construct(
         QuestionRepositoryInterface $questionRepository,
         SearchCriteriaBuilder $searchCriteriaBuilder,
@@ -42,7 +71,13 @@ class QuestionList extends Template implements BlockInterface
         parent::__construct($context, $data);
     }
 
-    public function getQuestionList()
+    /**
+     * Description.
+     *Gets list of question based on DESC order of DATABASE_FIELD_POSITION and with filters in use
+     *
+     * @return array
+     */
+    public function getQuestionList(): array
     {
         $sortOrder = $this->sortOrderBuilder
             ->setField(self::DATABASE_FIELD_POSITION)
