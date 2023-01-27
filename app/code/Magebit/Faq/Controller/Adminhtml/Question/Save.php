@@ -16,11 +16,20 @@ use Magebit\Faq\Model\QuestionRepository;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
-use Magento\Framework\Exception\AlreadyExistsException;
+use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Exception\LocalizedException;
 
+/**
+ * Class Save
+ */
 class Save extends Action implements HttpPostActionInterface
 {
+    /**
+     * @param Context $context
+     * @param QuestionRepositoryInterface $resource
+     * @param QuestionFactory $questionFactory
+     * @param QuestionRepository $questionRepository
+     */
     public function __construct(
         Context $context,
         private QuestionRepositoryInterface $resource,
@@ -31,9 +40,12 @@ class Save extends Action implements HttpPostActionInterface
     }
 
     /**
-     * @throws AlreadyExistsException
+     * Description.
+     *Saves FAQ
+     *
+     * @return Redirect
      */
-    public function execute() : \Magento\Framework\Controller\Result\Redirect
+    public function execute() : Redirect
     {
         $data = $this->getRequest()->getPostValue();
         $resultRedirect = $this->resultRedirectFactory->create();
@@ -67,7 +79,16 @@ class Save extends Action implements HttpPostActionInterface
         return $resultRedirect->setPath('');
     }
 
-    private function processQuestionReturn($model, $data, $resultRedirect)
+    /**
+     * Description.
+     *If save and close redirect back to FAQ index page, if just save then redirects to new/edited product ID save page.
+     *
+     * @param $model
+     * @param $data
+     * @param $resultRedirect
+     * @return mixed
+     */
+    private function processQuestionReturn($model, $data, $resultRedirect): mixed
     {
         $redirect = $data['back'] ?? 'close';
 

@@ -13,11 +13,20 @@ namespace Magebit\Faq\Controller\Adminhtml\Question;
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\Controller\ResultFactory;
-use Magento\Framework\View\Result\Page;
+use Magento\Framework\Controller\ResultInterface;
 
+/**
+ * Class Index
+ */
 class Index extends Action implements HttpGetActionInterface
 {
-    public function execute() : Page
+    /**
+     * Description.
+     *Returns index page of FAQ Admin page
+     *
+     * @return ResultInterface
+     */
+    public function execute() : ResultInterface
     {
         $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
         $resultPage->setActiveMenu('Magebit_Faq::question');

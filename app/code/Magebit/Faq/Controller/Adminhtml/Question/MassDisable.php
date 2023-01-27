@@ -7,19 +7,21 @@
  * @author       Niks Veinbergs
  * @copyright    Copyright (c) 2023 Magebit, Ltd.(https://www.magebit.com/)
  */
-
+declare(strict_types=1);
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
 use Magebit\Faq\Model\QuestionManagement;
 use Magebit\Faq\Model\ResourceModel\Question\CollectionFactory;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Ui\Component\MassAction\Filter;
 
 /**
- * Class MassDelete
+ * Class MassDisable
  */
 class MassDisable extends Action implements HttpPostActionInterface
 {
@@ -46,6 +48,7 @@ class MassDisable extends Action implements HttpPostActionInterface
      * @param Context $context
      * @param Filter $filter
      * @param CollectionFactory $collectionFactory
+     * @param QuestionManagement $questionManagement
      */
     public function __construct(
         Context            $context,
@@ -60,12 +63,12 @@ class MassDisable extends Action implements HttpPostActionInterface
     }
 
     /**
-     * Execute action
+     * Mass disable questions with help of QuestionManagement class
      *
-     * @return \Magento\Backend\Model\View\Result\Redirect
-     * @throws \Magento\Framework\Exception\LocalizedException|\Exception
+     * @return Redirect
+     * @throws LocalizedException|\Exception
      */
-    public function execute()
+    public function execute() //TODO Add return type to function
     {
         $collection = $this->filter->getCollection($this->collectionFactory->create());
         $collectionSize = $collection->getSize();
@@ -76,7 +79,7 @@ class MassDisable extends Action implements HttpPostActionInterface
 
         $this->messageManager->addSuccessMessage(__('A total of %1 record(s) have been disabled.', $collectionSize));
 
-        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
         return $resultRedirect->setPath('*/*/');
     }

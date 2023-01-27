@@ -7,13 +7,17 @@
  * @author       Niks Veinbergs
  * @copyright    Copyright (c) 2023 Magebit, Ltd.(https://www.magebit.com/)
  */
-
+declare(strict_types=1);
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
 use Magento\Backend\App\Action;
+use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\App\Action\HttpPostActionInterface;
+use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Backend\App\Action\Context;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Ui\Component\MassAction\Filter;
 use Magebit\Faq\Model\ResourceModel\Question\CollectionFactory;
 
@@ -51,13 +55,15 @@ class MassDelete extends Action implements HttpPostActionInterface
         parent::__construct($context);
     }
 
+
     /**
-     * Execute action
+     * Description.
+     *Mass Delete items
      *
-     * @return \Magento\Backend\Model\View\Result\Redirect
-     * @throws \Magento\Framework\Exception\LocalizedException|\Exception
+     * @return Redirect|ResponseInterface|ResultInterface
+     * @throws LocalizedException
      */
-    public function execute()
+    public function execute() //TODO Return type
     {
         $collection = $this->filter->getCollection($this->collectionFactory->create());
         $collectionSize = $collection->getSize();
@@ -68,7 +74,7 @@ class MassDelete extends Action implements HttpPostActionInterface
 
         $this->messageManager->addSuccessMessage(__('A total of %1 record(s) have been deleted.', $collectionSize));
 
-        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
         return $resultRedirect->setPath('*/*/');
     }

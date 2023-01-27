@@ -7,7 +7,7 @@
  * @author       Niks Veinbergs
  * @copyright    Copyright (c) 2023 Magebit, Ltd.(https://www.magebit.com/)
  */
-
+declare(strict_types=1);
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
 use Magebit\Faq\Model\QuestionRepository;
@@ -15,11 +15,16 @@ use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\ResultInterface;
-use Magento\Framework\Exception\CouldNotDeleteException;
-use Magento\Framework\Exception\NoSuchEntityException;
 
+/**
+ * Class Delete
+ */
 class Delete extends Action implements HttpPostActionInterface
 {
+    /**
+     * @param Context $context
+     * @param QuestionRepository $questionRepository
+     */
     public function __construct(
         Context $context,
         private QuestionRepository $questionRepository
@@ -28,8 +33,12 @@ class Delete extends Action implements HttpPostActionInterface
     }
 
     /**
-     * @throws NoSuchEntityException
-     * @throws CouldNotDeleteException
+     * Description.
+     *Deletes entry of question
+     *
+     * @return ResultInterface
+     * @throws \Magento\Framework\Exception\CouldNotDeleteException
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function execute() : ResultInterface
     {
@@ -41,6 +50,7 @@ class Delete extends Action implements HttpPostActionInterface
         } else {
             $this->messageManager->addErrorMessage('No question to delete');
         }
+
         return $resultRedirect->setPath('*/*/');
     }
 }

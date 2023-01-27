@@ -7,17 +7,24 @@
  * @author       Niks Veinbergs
  * @copyright    Copyright (c) 2023 Magebit, Ltd.(https://www.magebit.com/)
  */
-
+declare(strict_types=1);
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
 use Magebit\Faq\Api\Data\QuestionInterface;
 use Magebit\Faq\Model\QuestionRepository;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
-use Magento\Cms\Api\BlockRepositoryInterface as BlockRepository;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
-use Magento\Cms\Api\Data\BlockInterface;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\Exception\AlreadyExistsException;
+use Magento\Framework\Exception\CouldNotSaveException;
+use Magento\Framework\Exception\NoSuchEntityException;
 
+/**
+ * Class InlineEdit
+ */
 class InlineEdit extends Action
 {
     /**
@@ -27,10 +34,21 @@ class InlineEdit extends Action
      */
     const ADMIN_RESOURCE = 'Magebit_Faq::question';
 
+    /**
+     * @var QuestionRepository
+     */
     protected $questionRepository;
 
+    /**
+     * @var JsonFactory
+     */
     protected $jsonFactory;
 
+    /**
+     * @param Context $context
+     * @param QuestionRepository $questionRepository
+     * @param JsonFactory $jsonFactory
+     */
     public function __construct(
         Context $context,
         QuestionRepository $questionRepository,
@@ -42,12 +60,16 @@ class InlineEdit extends Action
     }
 
     /**
-     * @return \Magento\Framework\Controller\ResultInterface
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * Description.
+     *Inline edits instance with help of json
+     *
+     * @return ResponseInterface|Json|ResultInterface
+     * @throws AlreadyExistsException
+     * @throws CouldNotSaveException
+     * @throws NoSuchEntityException
      */
     public function execute()
     {
-        /** @var \Magento\Framework\Controller\Result\Json $resultJson */
         $resultJson = $this->jsonFactory->create();
         $error = false;
         $messages = [];
@@ -81,10 +103,11 @@ class InlineEdit extends Action
     }
 
     /**
-     * Add block title to error message
+     * Description.
+     *Returns message of Error if inline edit was not succesful
      *
-     * @param BlockInterface $block
-     * @param string $errorText
+     * @param QuestionInterface $question
+     * @param $errorText
      * @return string
      */
     protected function getErrorWithQuestionId(QuestionInterface $question, $errorText): string

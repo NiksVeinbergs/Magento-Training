@@ -7,7 +7,7 @@
  * @author       Niks Veinbergs
  * @copyright    Copyright (c) 2023 Magebit, Ltd.(https://www.magebit.com/)
  */
-
+declare(strict_types=1);
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
 use Magento\Backend\App\Action;
@@ -16,8 +16,17 @@ use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\View\Result\Page;
 
+/**
+ * Class Edit
+ */
 class Edit extends Action implements HttpGetActionInterface
 {
+    /**
+     * Description.
+     *Returns Page and formats it to Edit page if ID exists or New Page if it doesn't
+     *
+     * @return Page
+     */
     public function execute(): Page
     {
         $id = $this->getRequest()->getParam('id');
@@ -30,6 +39,12 @@ class Edit extends Action implements HttpGetActionInterface
         return $pageResult;
     }
 
+    /**
+     * Description.
+     *Creates pages Result
+     *
+     * @return Page|ResultInterface
+     */
     private function createPageResult(): Page|ResultInterface
     {
         return $this->resultFactory->create(ResultFactory::TYPE_PAGE);
