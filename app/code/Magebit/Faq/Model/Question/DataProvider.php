@@ -18,9 +18,28 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Ui\DataProvider\Modifier\PoolInterface;
 use Magento\Ui\DataProvider\ModifierPoolDataProvider;
 
+/**
+ * Class DataProvider
+ */
 class DataProvider extends ModifierPoolDataProvider
 {
+    /**
+     * @var array
+     */
     private array $loadedData;
+
+    /**
+     * @param $name
+     * @param $primaryFieldName
+     * @param $requestFieldName
+     * @param CollectionFactory $collectionFactory
+     * @param QuestionResource $resource
+     * @param QuestionFactory $questionFactory
+     * @param RequestInterface $request
+     * @param array $meta
+     * @param array $data
+     * @param PoolInterface|null $pool
+     */
     public function __construct(
         $name,
         $primaryFieldName,
@@ -37,6 +56,12 @@ class DataProvider extends ModifierPoolDataProvider
         $this->collection = $collectionFactory->create();
     }
 
+    /**
+     * Description.
+     *Get data of Current Question
+     *
+     * @return array
+     */
     public function getData(): array
     {
         if (isset($this->loadedData)) {
@@ -48,6 +73,12 @@ class DataProvider extends ModifierPoolDataProvider
         return $this->loadedData;
     }
 
+    /**
+     * Description.
+     *Returns instance of current question
+     *
+     * @return Question
+     */
     private function getCurrentQuestion() : Question
     {
         $questionId = $this->getQuestionId();
@@ -60,6 +91,12 @@ class DataProvider extends ModifierPoolDataProvider
         return $question;
     }
 
+    /**
+     * Description.
+     *Returns id of current question
+     *
+     * @return int
+     */
     private function getQuestionId() : int
     {
         return (int) $this->request->getParam($this->getRequestFieldName());

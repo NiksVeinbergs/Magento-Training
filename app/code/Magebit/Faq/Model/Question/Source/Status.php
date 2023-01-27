@@ -7,10 +7,13 @@
  * @author       Niks Veinbergs
  * @copyright    Copyright (c) 2023 Magebit, Ltd.(https://www.magebit.com/)
  */
-
+declare(strict_types=1);
 namespace Magebit\Faq\Model\Question\Source;
 
+/**
+ * Class Status
+ */
 class Status
 {
-
+//TODO Needs something?
 }
