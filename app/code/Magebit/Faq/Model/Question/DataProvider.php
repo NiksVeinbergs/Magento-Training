@@ -27,7 +27,8 @@ class DataProvider extends ModifierPoolDataProvider
     /**
      * @var array
      */
-    protected $loadedData = [];
+    protected $loadedData;
+
 
     /**
      * @param $name
@@ -55,15 +56,17 @@ class DataProvider extends ModifierPoolDataProvider
     ) {
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data, $pool);
         $this->collection = $collectionFactory->create();
+
     }//end __construct()
+
 
     /**
      * Description.
      * Get data of Current Question
      *
-     * @return array
+     *
      */
-    public function getData(): array
+    public function getData()
     {
         if (isset($this->loadedData)) {
             return $this->loadedData;
@@ -73,8 +76,11 @@ class DataProvider extends ModifierPoolDataProvider
         foreach ($items as $question) {
             $this->loadedData[$question->getId()] = $question->getData();
         }
+
         return $this->loadedData;
+
     }//end getData()
+
 
     /**
      * Description.
@@ -92,7 +98,9 @@ class DataProvider extends ModifierPoolDataProvider
 
         $this->resource->load($question, $questionId);
         return $question;
+
     }//end getCurrentQuestion()
+
 
     /**
      * Description.
@@ -103,5 +111,8 @@ class DataProvider extends ModifierPoolDataProvider
     private function getQuestionId() : int
     {
         return (int) $this->request->getParam($this->getRequestFieldName());
+
     }//end getQuestionId()
+
+
 }//end class
