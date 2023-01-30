@@ -17,5 +17,18 @@ use Magento\Framework\Api\SearchResultsInterface;
  */
 interface QuestionSearchResultsInterface extends SearchResultsInterface
 {
-//TODO Needs something?
+    /**
+     * Get FAQ list.
+     *
+     * @return QuestionInterface
+     */
+    public function getItems();
+
+    /**
+     * Set FAQ list.
+     *
+     * @param QuestionInterface[] $items
+     * @return $this
+     */
+    public function setItems(array $items);
 }

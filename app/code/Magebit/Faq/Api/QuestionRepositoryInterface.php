@@ -2,16 +2,17 @@
 /**
  * Magebit_Faq
  *
- * @category     Magebit
- * @package      Magebit_Faq
- * @author       Niks Veinbergs
- * @copyright    Copyright (c) 2023 Magebit, Ltd.(https://www.magebit.com/)
+ * @category  Magebit
+ * @package   Magebit_Faq
+ * @author    Niks Veinbergs
+ * @copyright Copyright (c) 2023 Magebit, Ltd.(https://www.magebit.com/)
  */
 declare(strict_types=1);
 namespace Magebit\Faq\Api;
 
 use Magebit\Faq\Model\Question;
 use Magento\Framework\Api\SearchCriteriaInterface;
+use Magento\Framework\Api\SearchResultsInterface;
 
 /**
  * Interface QuestionRepositoryInterface
@@ -19,49 +20,48 @@ use Magento\Framework\Api\SearchCriteriaInterface;
 interface QuestionRepositoryInterface
 {
 
+
     /**
      * Description.
      * Returns Question, based on given Question ID
      *
-     * @param string $questionId
+     * @param  string $questionId
      * @return Question
      */
     public function getById(string $questionId): Question;
 
+
     /**
      * Description.
-     *Saves question
+     * Saves question
      *
-     * @param Data\QuestionInterface $question
+     * @param  Data\QuestionInterface $question
      * @return Data\QuestionInterface
      */
     public function save(Data\QuestionInterface $question): Data\QuestionInterface;
 
+
     /**
      * Description.
-     *Get List of Questions based on given search criteria
+     * Get List of Questions based on given search criteria
      *
-     * @param SearchCriteriaInterface $searchCriteria
-     * @return array
+     * @param  SearchCriteriaInterface $searchCriteria
+     * @return SearchResultsInterface
      */
-    public function getList(SearchCriteriaInterface $searchCriteria): array;
+    public function getList(SearchCriteriaInterface $searchCriteria): SearchResultsInterface;
 
 
     /**
      * Description.
-     *Delete question
+     * Delete question
      *
-     * @param Data\QuestionInterface $question
-     * @return bool
+     * @param  Data\QuestionInterface $question
+     * @return boolean
      */
     public function delete(Data\QuestionInterface $question): bool;
 
-    /**
-     * Description.
-     * Delete Question by given id
-     *
-     * @param int $questionId
-     * @return bool
-     */
-    public function deleteById(int $questionId): bool;
-}
+
+    public function getAvailableStatuses(): array;
+
+
+}//end interface

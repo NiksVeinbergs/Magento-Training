@@ -2,10 +2,10 @@
 /**
  * Magebit_Faq
  *
- * @category     Magebit
- * @package      Magebit_Faq
- * @author       Niks Veinbergs
- * @copyright    Copyright (c) 2023 Magebit, Ltd.(https://www.magebit.com/)
+ * @category  Magebit
+ * @package   Magebit_Faq
+ * @author    Niks Veinbergs
+ * @copyright Copyright (c) 2023 Magebit, Ltd.(https://www.magebit.com/)
  */
 declare(strict_types=1);
 namespace Magebit\Faq\Controller\Adminhtml\Question;
@@ -21,8 +21,10 @@ use Magento\Framework\Controller\ResultInterface;
  */
 class Delete extends Action implements HttpPostActionInterface
 {
+
+
     /**
-     * @param Context $context
+     * @param Context            $context
      * @param QuestionRepository $questionRepository
      */
     public function __construct(
@@ -30,11 +32,13 @@ class Delete extends Action implements HttpPostActionInterface
         private QuestionRepository $questionRepository
     ) {
         parent::__construct($context);
-    }
+
+    }//end __construct()
+
 
     /**
      * Description.
-     *Deletes entry of question
+     * Deletes entry of question
      *
      * @return ResultInterface
      * @throws \Magento\Framework\Exception\CouldNotDeleteException
@@ -42,9 +46,11 @@ class Delete extends Action implements HttpPostActionInterface
      */
     public function execute() : ResultInterface
     {
-        $questionId = (int) $this->getRequest()->getParam('id');
+        $questionId     = $this->getRequest()->getParam('id');
         $resultRedirect = $this->resultRedirectFactory->create();
-        $message = $this->questionRepository->deleteById($questionId);
+        $question       = $this->questionRepository->getById($questionId);
+
+        $message = $this->questionRepository->delete($question);
         if ($message) {
             $this->messageManager->addSuccessMessage('Question has been deleted');
         } else {
@@ -52,5 +58,8 @@ class Delete extends Action implements HttpPostActionInterface
         }
 
         return $resultRedirect->setPath('*/*/');
-    }
-}
+
+    }//end execute()
+
+
+}//end class

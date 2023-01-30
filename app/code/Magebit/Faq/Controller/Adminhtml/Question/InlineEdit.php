@@ -2,12 +2,12 @@
 /**
  * Magebit_Faq
  *
- * @category     Magebit
- * @package      Magebit_Faq
- * @author       Niks Veinbergs
- * @copyright    Copyright (c) 2023 Magebit, Ltd.(https://www.magebit.com/)
+ * @category  Magebit
+ * @package   Magebit_Faq
+ * @author    Niks Veinbergs
+ * @copyright Copyright (c) 2023 Magebit, Ltd.(https://www.magebit.com/)
  */
-//TODO Declaring strict types causes problem to save document
+// TODO Declaring strict types causes problem to save document
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
 use Magebit\Faq\Api\Data\QuestionInterface;
@@ -36,9 +36,9 @@ class InlineEdit extends Action
     protected $jsonFactory;
 
     /**
-     * @param Context $context
+     * @param Context            $context
      * @param QuestionRepository $questionRepository
-     * @param JsonFactory $jsonFactory
+     * @param JsonFactory        $jsonFactory
      */
     public function __construct(
         Context $context,
@@ -47,12 +47,12 @@ class InlineEdit extends Action
     ) {
         parent::__construct($context);
         $this->questionRepository = $questionRepository;
-        $this->jsonFactory = $jsonFactory;
-    }
+        $this->jsonFactory        = $jsonFactory;
+    }//end __construct()
 
     /**
      * Description.
-     *Inline Edits selected items
+     * Inline Edits selected items
      *
      * @return ResponseInterface|Json|ResultInterface
      * @throws AlreadyExistsException
@@ -62,46 +62,48 @@ class InlineEdit extends Action
     public function execute()
     {
         $resultJson = $this->jsonFactory->create();
-        $error = false;
-        $messages = [];
+        $error      = false;
+        $messages   = [];
 
         if ($this->getRequest()->getParam('isAjax')) {
             $postItems = $this->getRequest()->getParam('items', []);
             if (!count($postItems)) {
                 $messages[] = __('Please correct the data sent.');
-                $error = true;
+                $error      = true;
             } else {
                 foreach (array_keys($postItems) as $questionId) {
                     $question = $this->questionRepository->getById($questionId);
                     try {
-                        $question->setData(array_merge($question->getData(), $postItems[$questionId]));
+                        $question->addData($postItems[$questionId]);
                         $this->questionRepository->save($question);
                     } catch (\Exception $e) {
                         $messages[] = $this->getErrorWithQuestionId(
                             $question,
-                            (string)__($e->getMessage())
+                            (string) __($e->getMessage())
                         );
-                        $error = true;
+                        $error      = true;
                     }
                 }
             }
-        }
+        }//end if
 
-        return $resultJson->setData([
-            'messages' => $messages,
-            'error' => $error
-        ]);
-    }
+        return $resultJson->setData(
+            [
+                'messages' => $messages,
+                'error'    => $error,
+            ]
+        );
+    }//end execute()
 
     /**
      * Add question id to error message
      *
-     * @param QuestionInterface $question
-     * @param string $errorText
+     * @param  QuestionInterface $question
+     * @param  string            $errorText
      * @return string
      */
     protected function getErrorWithQuestionId(QuestionInterface $question, string $errorText): string
     {
         return '[Question ID: ' . $question->getId() . '] ' . $errorText;
-    }
-}
+    }//end getErrorWithQuestionId()
+}//end class

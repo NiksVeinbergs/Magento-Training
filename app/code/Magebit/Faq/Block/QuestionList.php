@@ -2,14 +2,15 @@
 /**
  * Magebit_Faq
  *
- * @category     Magebit
- * @package      Magebit_Faq
- * @author       Niks Veinbergs
- * @copyright    Copyright (c) 2023 Magebit, Ltd.(https://www.magebit.com/)
+ * @category  Magebit
+ * @package   Magebit_Faq
+ * @author    Niks Veinbergs
+ * @copyright Copyright (c) 2023 Magebit, Ltd.(https://www.magebit.com/)
  */
 declare(strict_types=1);
 namespace Magebit\Faq\Block;
 
+use Magebit\Faq\Api\Data\QuestionInterface;
 use Magebit\Faq\Api\QuestionRepositoryInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Api\SortOrder;
@@ -22,27 +23,22 @@ use Magento\Widget\Block\BlockInterface;
  */
 class QuestionList extends Template implements BlockInterface
 {
-    /**#@+
-     * Constants used for filtering purposes.
-     */
-    const DATABASE_FIELD_POSITION = 'position';
-    const DATABASE_FIELD_STATUS = 'status';
-    const STATUS_ENABLED_VALUE = 1;
-    const STATUS_CONDITION_TYPE_EQ = 'eq';
-    /**#@-*/
 
     /**
      * @var QuestionRepositoryInterface
      */
     protected $questionRepository;
+
     /**
      * @var SearchCriteriaBuilder
      */
     private $searchCriteriaBuilder;
+
     /**
      * @var SortOrder
      */
     private $sortOrder;
+
     /**
      * @var SortOrderBuilder
      */
@@ -50,11 +46,11 @@ class QuestionList extends Template implements BlockInterface
 
     /**
      * @param QuestionRepositoryInterface $questionRepository
-     * @param SearchCriteriaBuilder $searchCriteriaBuilder
-     * @param SortOrder $sortOrder
-     * @param SortOrderBuilder $sortOrderBuilder
-     * @param Template\Context $context
-     * @param array $data
+     * @param SearchCriteriaBuilder       $searchCriteriaBuilder
+     * @param SortOrder                   $sortOrder
+     * @param SortOrderBuilder            $sortOrderBuilder
+     * @param Template\Context            $context
+     * @param array                       $data
      */
     public function __construct(
         QuestionRepositoryInterface $questionRepository,
@@ -62,31 +58,28 @@ class QuestionList extends Template implements BlockInterface
         SortOrder $sortOrder,
         SortOrderBuilder $sortOrderBuilder,
         Template\Context $context,
-        array $data = []
+        array $data=[]
     ) {
-        $this->questionRepository = $questionRepository;
+        $this->questionRepository    = $questionRepository;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
-        $this->sortOrder = $sortOrder;
-        $this->sortOrderBuilder = $sortOrderBuilder;
+        $this->sortOrder             = $sortOrder;
+        $this->sortOrderBuilder      = $sortOrderBuilder;
         parent::__construct($context, $data);
-    }
+    }//end __construct()
 
     /**
      * Description.
-     *Gets list of question based on DESC order of DATABASE_FIELD_POSITION and with filters in use
+     * Gets list of question based on DESC order of DATABASE_FIELD_POSITION and with filters in use
      *
      * @return array
      */
     public function getQuestionList(): array
     {
-        $sortOrder = $this->sortOrderBuilder
-            ->setField(self::DATABASE_FIELD_POSITION)
-            ->setDirection(SortOrder::SORT_DESC)
-            ->create();
+        $sortOrder = $this->sortOrderBuilder->setField(QuestionInterface::QUESTION_POSITION)->setDirection(SortOrder::SORT_DESC)->create();
         $this->searchCriteriaBuilder->addSortOrder($sortOrder);
-        $this->searchCriteriaBuilder->addFilter(self::DATABASE_FIELD_STATUS, self::STATUS_ENABLED_VALUE, self::STATUS_CONDITION_TYPE_EQ);
+        $this->searchCriteriaBuilder->addFilter(QuestionInterface::QUESTION_STATUS, QuestionInterface::STATUS_ENABLED_VALUE, 'eq');
         $searchCriteria = $this->searchCriteriaBuilder->create();
 
-        return $this->questionRepository->getList($searchCriteria);
-    }
-}
+        return $this->questionRepository->getList($searchCriteria)->getItems();
+    }//end getQuestionList()
+}//end class

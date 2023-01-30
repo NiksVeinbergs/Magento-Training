@@ -1,15 +1,18 @@
 <?xml version="1.0"?>
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-<body>
-    <referenceBlock name="page.main.title">
-        <action method="setPageTitle">
-            <argument name="title" xsi:type="string">Frequently Asked Questions</argument>
-        </action>
-    </referenceBlock>
-    <referenceBlock name="content" >
-        <block class="Magebit\Faq\Block\QuestionList" template="Magebit_Faq::question-list.phtml" as="question-list" />
-    </referenceBlock>
-    <referenceBlock name="wishlist_sidebar" remove="true"/>
-    <referenceBlock name="catalog.compare.sidebar" remove="true"/>
-</body>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Frequently Asked Questions</title>
+    </head>
+    <body>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument name="title" xsi:type="string">Frequently Asked Questions</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="content" >
+            <block class="Magebit\Faq\Block\QuestionList" template="Magebit_Faq::question-list.phtml" as="question-list" />
+        </referenceBlock>
+        <referenceBlock name="wishlist_sidebar" remove="true"/>
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+    </body>
 </page>

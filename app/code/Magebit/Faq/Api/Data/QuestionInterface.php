@@ -21,6 +21,8 @@ interface QuestionInterface
     const QUESTION_STATUS = 'status';
     const QUESTION_POSITION = 'position';
     const UPDATED_AT = 'updated_at';
+    const STATUS_ENABLED_VALUE = 1;
+    const STATUS_DISABLED_VALUE = 0;
     /**#@-*/
 
     public function getId();

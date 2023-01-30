@@ -2,10 +2,10 @@
 /**
  * Magebit_Faq
  *
- * @category     Magebit
- * @package      Magebit_Faq
- * @author       Niks Veinbergs
- * @copyright    Copyright (c) 2023 Magebit, Ltd.(https://www.magebit.com/)
+ * @category  Magebit
+ * @package   Magebit_Faq
+ * @author    Niks Veinbergs
+ * @copyright Copyright (c) 2023 Magebit, Ltd.(https://www.magebit.com/)
  */
 declare(strict_types=1);
 namespace Magebit\Faq\Model\Question;
@@ -23,21 +23,22 @@ use Magento\Ui\DataProvider\ModifierPoolDataProvider;
  */
 class DataProvider extends ModifierPoolDataProvider
 {
+
     /**
      * @var array
      */
-    private array $loadedData;
+    protected $loadedData = [];
 
     /**
      * @param $name
      * @param $primaryFieldName
      * @param $requestFieldName
-     * @param CollectionFactory $collectionFactory
-     * @param QuestionResource $resource
-     * @param QuestionFactory $questionFactory
-     * @param RequestInterface $request
-     * @param array $meta
-     * @param array $data
+     * @param CollectionFactory  $collectionFactory
+     * @param QuestionResource   $resource
+     * @param QuestionFactory    $questionFactory
+     * @param RequestInterface   $request
+     * @param array              $meta
+     * @param array              $data
      * @param PoolInterface|null $pool
      */
     public function __construct(
@@ -48,17 +49,17 @@ class DataProvider extends ModifierPoolDataProvider
         private QuestionResource $resource,
         private QuestionFactory $questionFactory,
         private RequestInterface $request,
-        array $meta = [],
-        array $data = [],
-        PoolInterface $pool = null
+        array $meta=[],
+        array $data=[],
+        PoolInterface $pool=null
     ) {
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data, $pool);
         $this->collection = $collectionFactory->create();
-    }
+    }//end __construct()
 
     /**
      * Description.
-     *Get data of Current Question
+     * Get data of Current Question
      *
      * @return array
      */
@@ -68,37 +69,39 @@ class DataProvider extends ModifierPoolDataProvider
             return $this->loadedData;
         }
 
-        $question = $this->getCurrentQuestion();
-        $this->loadedData[$question->getId()] = $question->getData();
+        $items = $this->collection->getItems();
+        foreach ($items as $question) {
+            $this->loadedData[$question->getId()] = $question->getData();
+        }
         return $this->loadedData;
-    }
+    }//end getData()
 
     /**
      * Description.
-     *Returns instance of current question
+     * Returns instance of current question
      *
      * @return Question
      */
     private function getCurrentQuestion() : Question
     {
         $questionId = $this->getQuestionId();
-        $question = $this->questionFactory->create();
+        $question   = $this->questionFactory->create();
         if (!$questionId) {
             return $question;
         }
 
         $this->resource->load($question, $questionId);
         return $question;
-    }
+    }//end getCurrentQuestion()
 
     /**
      * Description.
-     *Returns id of current question
+     * Returns id of current question
      *
-     * @return int
+     * @return integer
      */
     private function getQuestionId() : int
     {
         return (int) $this->request->getParam($this->getRequestFieldName());
-    }
-}
+    }//end getQuestionId()
+}//end class

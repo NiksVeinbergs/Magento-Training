@@ -2,10 +2,10 @@
 /**
  * Magebit_Faq
  *
- * @category     Magebit
- * @package      Magebit_Faq
- * @author       Niks Veinbergs
- * @copyright    Copyright (c) 2023 Magebit, Ltd.(https://www.magebit.com/)
+ * @category  Magebit
+ * @package   Magebit_Faq
+ * @author    Niks Veinbergs
+ * @copyright Copyright (c) 2023 Magebit, Ltd.(https://www.magebit.com/)
  */
 declare(strict_types=1);
 namespace Magebit\Faq\Controller\Index;
@@ -21,26 +21,29 @@ use Magento\Framework\View\Result\PageFactory;
  */
 class Index implements HttpGetActionInterface
 {
+
+
     /**
      * @param PageFactory $pageFactory
      */
     public function __construct(
         private PageFactory $pageFactory
     ) {
-    }
+
+    }//end __construct()
+
 
     /**
      * Description.
-     *Returns front-end page of FAQ and sets page title and layout to 2 columns
+     * Returns front-end page of FAQ
      *
      * @return ResponseInterface|ResultInterface|Page
      */
-    public function execute() //TODO Return type?
+    public function execute()
     {
-        $page = $this->pageFactory->create();
-        $page->getConfig()->getTitle()->set(__('Frequently Asked Questions'));
-        $page->getConfig()->setPageLayout('2columns');
+        return $this->pageFactory->create();
 
-        return $page;
-    }
-}
+    }//end execute()
+
+
+}//end class

@@ -141,7 +141,7 @@
         </column>
         <column name="status" sortOrder="30" component="Magento_Ui/js/grid/columns/select">
             <settings>
-                <options class="Magento\Cms\Model\Page\Source\IsActive"/>
+                <options class="Magebit\Faq\Model\Question\Source\Status"/>
                 <filter>select</filter>
                 <editor>
                     <editorType>select</editorType>

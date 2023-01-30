@@ -11,7 +11,7 @@
         <buttons>
             <button name="save" class="Magebit\Faq\Ui\Component\Form\Button\Save"/>
             <button name="delete" class="Magebit\Faq\Ui\Component\Form\Button\Delete"/>
-            <button name="back" class="Magento\Cms\Block\Adminhtml\Page\Edit\BackButton"/>
+            <button name="back" class="Magebit\Faq\Ui\Component\Form\Button\Back"/>
         </buttons>
         <namespace>magebit_faq_question_form</namespace>
         <dataScope>data</dataScope>
