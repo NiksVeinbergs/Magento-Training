@@ -18,13 +18,14 @@ use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Framework\View\Element\UiComponent\DataProvider\Document;
 use Psr\Log\LoggerInterface;
-
+use Magebit\Faq\Api\Data\QuestionInterface;
 /**
  * Collection for displaying grid of FAQ's
  *
  */
 class Collection extends QuestionCollection implements SearchResultInterface
 {
+
     /**
      * @var TimezoneInterface
      */
@@ -80,7 +81,7 @@ class Collection extends QuestionCollection implements SearchResultInterface
      */
     public function addFieldToFilter($field, $condition = null) //
     {
-        if ($field === 'creation_time' || $field === 'update_time') {
+        if ($field === QuestionInterface::UPDATED_AT) {
             if (is_array($condition)) {
                 foreach ($condition as $key => $value) {
                     $condition[$key] = $this->timeZone->convertConfigTimeToUtc($value);
