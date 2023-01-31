@@ -1,11 +1,17 @@
 <?php
 /**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Magebit_Faq
+ *
+ * @category  Magebit
+ * @package   Magebit_Faq
+ * @author    Niks Veinbergs
+ * @copyright Copyright (c) 2023 Magebit, Ltd.(https://www.magebit.com/)
  */
+
 declare(strict_types=1);
 namespace Magebit\Faq\Model\ResourceModel\Question\Grid;
 
+use Magebit\Faq\Api\Data\QuestionInterface;
 use Magebit\Faq\Model\ResourceModel\Question\Collection as QuestionCollection;
 use Magento\Framework\Api\ExtensibleDataInterface;
 use Magento\Framework\Api\Search\AggregationInterface;
@@ -18,10 +24,9 @@ use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Framework\View\Element\UiComponent\DataProvider\Document;
 use Psr\Log\LoggerInterface;
-use Magebit\Faq\Api\Data\QuestionInterface;
+
 /**
  * Collection for displaying grid of FAQ's
- *
  */
 class Collection extends QuestionCollection implements SearchResultInterface
 {
@@ -38,14 +43,14 @@ class Collection extends QuestionCollection implements SearchResultInterface
 
     /**
      * @param EntityFactoryInterface $entityFactory
-     * @param LoggerInterface $logger
+     * @param LoggerInterface        $logger
      * @param FetchStrategyInterface $fetchStrategy
-     * @param ManagerInterface $eventManager
+     * @param ManagerInterface       $eventManager
      * @param $mainTable
      * @param $eventPrefix
      * @param $eventObject
      * @param $resourceModel
-     * @param string $model
+     * @param string                 $model
      */
     public function __construct(
         EntityFactoryInterface $entityFactory,
@@ -68,18 +73,17 @@ class Collection extends QuestionCollection implements SearchResultInterface
         $this->_eventObject = $eventObject;
         $this->_init($model, $resourceModel);
         $this->setMainTable($mainTable);
-    }
+    }//end __construct()
 
     /**
      * Description.
      *
-     *
-     * @param $field
-     * @param $condition
+     * @param  $field
+     * @param  $condition
      * @return Collection
      * @throws LocalizedException
      */
-    public function addFieldToFilter($field, $condition = null) //
+    public function addFieldToFilter($field, $condition = null)
     {
         if ($field === QuestionInterface::UPDATED_AT) {
             if (is_array($condition)) {
@@ -90,7 +94,7 @@ class Collection extends QuestionCollection implements SearchResultInterface
         }
 
         return parent::addFieldToFilter($field, $condition);
-    }
+    }//end addFieldToFilter()
 
     /**
      * Get aggregation interface instance
@@ -100,19 +104,19 @@ class Collection extends QuestionCollection implements SearchResultInterface
     public function getAggregations()
     {
         return $this->aggregations;
-    }
+    }//end getAggregations()
 
     /**
      * Set aggregation interface instance
      *
-     * @param AggregationInterface $aggregations
+     * @param  AggregationInterface $aggregations
      * @return $this
      */
     public function setAggregations($aggregations)
     {
         $this->aggregations = $aggregations;
         return $this;
-    }
+    }//end setAggregations()
 
     /**
      * Get search criteria.
@@ -122,51 +126,51 @@ class Collection extends QuestionCollection implements SearchResultInterface
     public function getSearchCriteria()
     {
         return null;
-    }
+    }//end getSearchCriteria()
 
     /**
      * Set search criteria.
      *
-     * @param SearchCriteriaInterface $searchCriteria
-     * @return $this
+     * @param                                         SearchCriteriaInterface $searchCriteria
+     * @return                                        $this
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function setSearchCriteria(SearchCriteriaInterface $searchCriteria = null)
     {
         return $this;
-    }
+    }//end setSearchCriteria()
 
     /**
      * Get total count.
      *
-     * @return int
+     * @return integer
      */
     public function getTotalCount()
     {
         return $this->getSize();
-    }
+    }//end getTotalCount()
 
     /**
      * Set total count.
      *
-     * @param int $totalCount
-     * @return $this
+     * @param                                         integer $totalCount
+     * @return                                        $this
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function setTotalCount($totalCount)
     {
         return $this;
-    }
+    }//end setTotalCount()
 
     /**
      * Set items list.
      *
-     * @param ExtensibleDataInterface[] $items
-     * @return $this
+     * @param                                         ExtensibleDataInterface[] $items
+     * @return                                        $this
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function setItems(array $items = null)
     {
         return $this;
-    }
-}
+    }//end setItems()
+}//end class

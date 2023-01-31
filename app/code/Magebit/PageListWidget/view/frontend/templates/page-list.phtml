@@ -11,7 +11,7 @@ use Magebit\PageListWidget\Block\Widget\PageList;
 
 <b><h3><?= $block->getTitle() ?></h3></b>
 <ul>
-    <?php foreach ($block->getPages() as $page) : ?>
+    <?php foreach ($block->getPages() as $page): ?>
         <li> <a href="<?= $page['url']?>"> <?=$page['name']?> </a> </li>
     <?php endforeach; ?>
 </ul>

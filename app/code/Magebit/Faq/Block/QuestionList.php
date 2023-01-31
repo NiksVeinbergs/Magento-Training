@@ -58,7 +58,7 @@ class QuestionList extends Template implements BlockInterface
         SortOrder $sortOrder,
         SortOrderBuilder $sortOrderBuilder,
         Template\Context $context,
-        array $data=[]
+        array $data = []
     ) {
         $this->questionRepository    = $questionRepository;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;

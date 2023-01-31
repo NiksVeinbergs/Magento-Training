@@ -68,7 +68,6 @@ class QuestionRepository implements QuestionRepositoryInterface
         QuestionCollectionFactory $questionCollectionFactory,
         QuestionSearchResultsInterfaceFactory $searchResultsFactory,
         CollectionProcessorInterface $collectionProcessor
-
     ) {
         $this->resource = $resource;
         $this->questionFactory = $questionFactory;
@@ -101,7 +100,7 @@ class QuestionRepository implements QuestionRepositoryInterface
 
     /**
      * Description.
-     *Saves question
+     * Saves question
      *
      * @param Data\QuestionInterface $question
      * @return Data\QuestionInterface
@@ -120,7 +119,7 @@ class QuestionRepository implements QuestionRepositoryInterface
 
     /**
      * Description.
-     *Get List of Questions based on given search criteria
+     * Get List of Questions based on given search criteria
      *
      * @param SearchCriteriaInterface $searchCriteria
      * @return Data\QuestionSearchResultsInterface
@@ -139,7 +138,7 @@ class QuestionRepository implements QuestionRepositoryInterface
 
     /**
      * Description.
-     *Delete question
+     * Delete question
      *
      * @param Data\QuestionInterface $question
      * @return bool

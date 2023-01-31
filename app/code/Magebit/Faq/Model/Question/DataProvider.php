@@ -50,13 +50,12 @@ class DataProvider extends ModifierPoolDataProvider
         private QuestionResource $resource,
         private QuestionFactory $questionFactory,
         private RequestInterface $request,
-        array $meta=[],
-        array $data=[],
-        PoolInterface $pool=null
+        array $meta = [],
+        array $data = [],
+        PoolInterface $pool = null
     ) {
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data, $pool);
         $this->collection = $collectionFactory->create();
-
     }//end __construct()
 
 
@@ -78,7 +77,6 @@ class DataProvider extends ModifierPoolDataProvider
         }
 
         return $this->loadedData;
-
     }//end getData()
 
 
@@ -98,7 +96,6 @@ class DataProvider extends ModifierPoolDataProvider
 
         $this->resource->load($question, $questionId);
         return $question;
-
     }//end getCurrentQuestion()
 
 
@@ -111,8 +108,5 @@ class DataProvider extends ModifierPoolDataProvider
     private function getQuestionId() : int
     {
         return (int) $this->request->getParam($this->getRequestFieldName());
-
     }//end getQuestionId()
-
-
 }//end class

@@ -46,11 +46,10 @@ class QuestionActions extends Column
         UiComponentFactory $uiComponentFactory,
         private UrlInterface $urlBuilder,
         private Escaper $escaper,
-        array $components=[],
-        array $data=[]
+        array $components = [],
+        array $data = []
     ) {
         parent::__construct($context, $uiComponentFactory, $components, $data);
-
     }//end __construct()
 
 
@@ -86,7 +85,6 @@ class QuestionActions extends Column
         }//end if
 
         return $dataSource;
-
     }//end prepareDataSource()
 
 
@@ -101,8 +99,5 @@ class QuestionActions extends Column
     private function getCustomUrl(array $item, string $url) : string
     {
         return $this->urlBuilder->getUrl($url, ['id' => $item['id']]);
-
     }//end getCustomUrl()
-
-
 }//end class

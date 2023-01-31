@@ -41,7 +41,7 @@ class NewAction implements HttpGetActionInterface
 
     /**
      * Description.
-     *Forwards to edit page
+     * Forwards to edit page
      *
      * @return Forward|ResponseInterface|ResultInterface
      */

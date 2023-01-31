@@ -33,7 +33,6 @@ class Back extends GenericButton implements ButtonProviderInterface
             'class'      => 'back',
             'sort_order' => 10,
         ];
-
     }//end getButtonData()
 
 
@@ -45,8 +44,5 @@ class Back extends GenericButton implements ButtonProviderInterface
     public function getBackUrl()
     {
         return $this->getUrl('*/*/');
-
     }//end getBackUrl()
-
-
 }//end class

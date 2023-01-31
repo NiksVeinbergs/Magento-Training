@@ -62,6 +62,4 @@ interface QuestionRepositoryInterface
 
 
     public function getAvailableStatuses(): array;
-
-
 }//end interface

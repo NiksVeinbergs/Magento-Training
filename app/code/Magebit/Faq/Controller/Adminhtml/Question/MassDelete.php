@@ -58,7 +58,7 @@ class MassDelete extends Action implements HttpPostActionInterface
 
     /**
      * Description.
-     *Mass Delete items
+     * Mass Delete items
      *
      * @return Redirect|ResponseInterface|ResultInterface
      * @throws LocalizedException

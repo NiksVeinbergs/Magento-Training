@@ -22,7 +22,7 @@ class Index extends Action implements HttpGetActionInterface
 {
     /**
      * Description.
-     *Returns index page of FAQ Admin page
+     * Returns index page of FAQ Admin page
      *
      * @return ResultInterface
      */

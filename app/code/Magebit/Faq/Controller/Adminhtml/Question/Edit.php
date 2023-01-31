@@ -39,7 +39,6 @@ class Edit extends Action implements HttpGetActionInterface
         $title->prepend($text);
 
         return $pageResult;
-
     }//end execute()
 
 
@@ -52,8 +51,5 @@ class Edit extends Action implements HttpGetActionInterface
     private function createPageResult(): Page|ResultInterface
     {
         return $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-
     }//end createPageResult()
-
-
 }//end class

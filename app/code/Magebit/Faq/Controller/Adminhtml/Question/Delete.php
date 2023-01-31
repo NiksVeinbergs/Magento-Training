@@ -32,7 +32,6 @@ class Delete extends Action implements HttpPostActionInterface
         private QuestionRepository $questionRepository
     ) {
         parent::__construct($context);
-
     }//end __construct()
 
 
@@ -58,8 +57,5 @@ class Delete extends Action implements HttpPostActionInterface
         }
 
         return $resultRedirect->setPath('*/*/');
-
     }//end execute()
-
-
 }//end class

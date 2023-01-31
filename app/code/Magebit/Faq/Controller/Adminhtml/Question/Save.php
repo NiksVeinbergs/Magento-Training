@@ -41,7 +41,7 @@ class Save extends Action implements HttpPostActionInterface
 
     /**
      * Description.
-     *Saves FAQ
+     * Saves FAQ
      *
      * @return Redirect
      */
@@ -82,7 +82,7 @@ class Save extends Action implements HttpPostActionInterface
 
     /**
      * Description.
-     *If save and close redirect back to FAQ index page, if just save then redirects to new/edited product ID save page.
+     * If save and close redirect back to FAQ index page, if just save then redirects to new/edited product ID save page.
      *
      * @param $model
      * @param $data

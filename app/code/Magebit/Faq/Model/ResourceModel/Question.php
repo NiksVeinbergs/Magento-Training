@@ -12,6 +12,7 @@ namespace Magebit\Faq\Model\ResourceModel;
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 use Magebit\Faq\Api\Data\QuestionInterface;
+
 /**
  * Class Question
  */
@@ -30,8 +31,5 @@ class Question extends AbstractDb
     protected function _construct()
     {
         $this->_init(self::TABLE_NAME, QuestionInterface::QUESTION_ID);
-
     }//end _construct()
-
-
 }//end class

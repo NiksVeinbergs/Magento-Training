@@ -54,7 +54,7 @@ class PageList extends Template implements BlockInterface
     }
 
     /**
-     *Returns input title as a String
+     * Returns input title as a String
      *
      * @return string
      */
@@ -74,7 +74,7 @@ class PageList extends Template implements BlockInterface
     }
 
     /**
-     *Based on display mode, returns specific pages (adds additional filter) or returns all pages w/o filter
+     * Based on display mode, returns specific pages (adds additional filter) or returns all pages w/o filter
      *
      * @return array
      * @throws LocalizedException

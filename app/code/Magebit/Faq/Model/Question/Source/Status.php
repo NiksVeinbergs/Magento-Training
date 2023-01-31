@@ -31,7 +31,6 @@ class Status implements OptionSourceInterface
     public function __construct(Question $question)
     {
         $this->question = $question;
-
     }//end __construct()
 
 
@@ -52,8 +51,5 @@ class Status implements OptionSourceInterface
         }
 
         return $options;
-
     }//end toOptionArray()
-
-
 }//end class

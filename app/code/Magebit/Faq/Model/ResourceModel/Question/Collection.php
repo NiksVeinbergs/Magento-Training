@@ -21,7 +21,7 @@ class Collection extends AbstractCollection
 {
     /**
      * Description.
-     *Collection constructor
+     * Collection constructor
      *
      * @return void
      */

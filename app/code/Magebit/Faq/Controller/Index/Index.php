@@ -29,7 +29,6 @@ class Index implements HttpGetActionInterface
     public function __construct(
         private PageFactory $pageFactory
     ) {
-
     }//end __construct()
 
 
@@ -42,8 +41,5 @@ class Index implements HttpGetActionInterface
     public function execute()
     {
         return $this->pageFactory->create();
-
     }//end execute()
-
-
 }//end class

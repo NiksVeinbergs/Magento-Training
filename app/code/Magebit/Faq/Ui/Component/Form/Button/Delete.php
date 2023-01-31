@@ -37,7 +37,6 @@ class Delete implements ButtonProviderInterface
     ) {
         $this->context            = $context;
         $this->questionRepository = $questionRepository;
-
     }//end __construct()
 
 
@@ -61,7 +60,6 @@ class Delete implements ButtonProviderInterface
         }
 
         return $data;
-
     }//end getButtonData()
 
 
@@ -73,7 +71,6 @@ class Delete implements ButtonProviderInterface
     public function getDeleteUrl(): string
     {
         return $this->getUrl('*/*/delete', ['id' => $this->getQuestionId()]);
-
     }//end getDeleteUrl()
 
 
@@ -94,7 +91,6 @@ class Delete implements ButtonProviderInterface
         }
 
         return null;
-
     }//end getQuestionId()
 
 
@@ -105,11 +101,8 @@ class Delete implements ButtonProviderInterface
      * @param  $params
      * @return string
      */
-    public function getUrl($route='', $params=[]): string
+    public function getUrl($route = '', $params = []): string
     {
         return $this->context->getUrlBuilder()->getUrl($route, $params);
-
     }//end getUrl()
-
-
 }//end class

@@ -27,7 +27,6 @@ class Question extends AbstractModel implements QuestionInterface
     protected function _construct(): void
     {
         $this->_init(QuestionResource::class);
-
     }//end _construct()
 
 
@@ -40,7 +39,6 @@ class Question extends AbstractModel implements QuestionInterface
     public function getId(): mixed
     {
         return $this->getData(self::QUESTION_ID);
-
     }//end getId()
 
 
@@ -53,7 +51,6 @@ class Question extends AbstractModel implements QuestionInterface
     public function getQuestion(): mixed
     {
         return $this->getData(self::QUESTION_TITLE);
-
     }//end getQuestion()
 
 
@@ -67,7 +64,6 @@ class Question extends AbstractModel implements QuestionInterface
     public function setQuestion(string $question): Question
     {
         return $this->setData(self::QUESTION_TITLE, $question);
-
     }//end setQuestion()
 
 
@@ -80,7 +76,6 @@ class Question extends AbstractModel implements QuestionInterface
     public function getAnswer(): mixed
     {
         return $this->getData(self::QUESTION_ANSWER);
-
     }//end getAnswer()
 
 
@@ -94,7 +89,6 @@ class Question extends AbstractModel implements QuestionInterface
     public function setAnswer(string $answer): Question
     {
         return $this->setData(self::QUESTION_ANSWER, $answer);
-
     }//end setAnswer()
 
 
@@ -107,7 +101,6 @@ class Question extends AbstractModel implements QuestionInterface
     public function getStatus(): mixed
     {
         return $this->getData(self::QUESTION_STATUS);
-
     }//end getStatus()
 
 
@@ -121,7 +114,6 @@ class Question extends AbstractModel implements QuestionInterface
     public function setStatus(int $status): Question
     {
         return $this->setData(self::QUESTION_STATUS, $status);
-
     }//end setStatus()
 
 
@@ -134,7 +126,6 @@ class Question extends AbstractModel implements QuestionInterface
     public function getPosition(): mixed
     {
         return $this->getData(self::QUESTION_POSITION);
-
     }//end getPosition()
 
 
@@ -148,7 +139,6 @@ class Question extends AbstractModel implements QuestionInterface
     public function setPosition(int $position): Question
     {
         return $this->setData(self::QUESTION_POSITION, $position);
-
     }//end setPosition()
 
 
@@ -161,7 +151,6 @@ class Question extends AbstractModel implements QuestionInterface
     public function getUpdatedAt(): mixed
     {
         return $this->getData(self::UPDATED_AT);
-
     }//end getUpdatedAt()
 
 
@@ -171,8 +160,5 @@ class Question extends AbstractModel implements QuestionInterface
             self::STATUS_ENABLED_VALUE  => __('Enabled'),
             self::STATUS_DISABLED_VALUE => __('Disabled'),
         ];
-
     }//end getAvailableStatuses()
-
-
 }//end class
